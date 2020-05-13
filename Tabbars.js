@@ -1,13 +1,13 @@
 import React, { Component } from 'react'
-import { Router, Scene ,Tabs, Actions} from 'react-native-router-flux'
+import { Router, Scene ,Tabs, Actions, Modal} from 'react-native-router-flux'
+import Drawer from 'react-native-drawer'
 import {Icon} from'@ant-design/react-native'
 import Body from './Body'
 import Main from './Main'
-import Person from './Person'
 import Img from './Img';
 import List from './MsgList';
 import Login from './Login';
-import Loginin from './Loginin'
+import Loginin from './Loginin';
 export default class Tabbars extends Component {
 	constructor(){
 		super()
@@ -38,21 +38,19 @@ export default class Tabbars extends Component {
 						<Scene key='home' component={Main} hideNavBar/>
 						<Scene 
 							hideTabBar 
-							hideDrawerButton
 							key='mylist' 
 							component={Body}
 						/>
 					</Scene>
 								{/* 消息栏 */}
 						<Scene key='msg'
-							title='第二页面'
+							title='商城'
 							icon={
 								({focused})=><Icon 
 									color={focused?'red':'gray'} 
 									name="shop"
 								/>
 								}
-							
 						>
 							<Scene key="ms" component={Body} hideNavBar />
 							<Scene 

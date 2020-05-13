@@ -1,4 +1,4 @@
-import {ScrollView,View,Image, Text, AsyncStorage, Alert, ToastAndroid} from 'react-native'
+import {ScrollView,View,Image, Text} from 'react-native'
 import React, { Component } from 'react'
 export default class WelcomePage extends Component {
     render(){

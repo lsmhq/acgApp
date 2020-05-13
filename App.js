@@ -17,7 +17,7 @@ const App = () => {
 	});
 	BackHandler.addEventListener('back', () => {
 		clearTimeout(timer);
-	  	let timer = setTimeout(() => { 
+	  	let timer = setTimeout(() => {
 			exit = false;
 	  	}, 2000);
 	  	if (exit) {
