@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { View, Text, FlatList,  ImageBackground } from 'react-native'
+import { View, Text, FlatList,  Image,ImageBackground} from 'react-native'
 export default class All extends Component {
     constructor(){
         super()
@@ -16,16 +16,27 @@ export default class All extends Component {
     }
     render() {
         return (
-            <View style={{flexDirection:'row'}}>
-                {
-                    this.state.data.map((val,idx)=>{
+            <View style={{width:'100%'}}>
+                <FlatList
+                    numColumns={2}
+                    style={{backgroundColor:'#C9C9C9'}}
+                    data={this.state.data}
+                    renderItem={({item})=>{
                         return(
-                            <View style={{width:'40%',marginLeft:'10%',backgroundColor:'#F2F2F2'}}>
-                                <Text>{val.name}</Text>
-                            </View>
+                        <View style={{top:10*item.line,left:15*item.num,width:200,height:250,backgroundColor:'white',alignItems:"center",borderRadius:5}}>
+                            <ImageBackground
+                                source={{uri:`https://daitianfang.1459.top${item.path}`}}
+                                style={{width:'100%',height:'100%',alignItems:"center"}}
+                            >
+                                <Text style={{top:'80%',left:0}}>{item.title}</Text>
+                                <Text style={{top:'81%',color:'red'}}>{item.price}</Text>
+                            </ImageBackground>
+                        </View>  
                         )
-                    })
-                }
+                    }
+                    }
+                >
+                </FlatList>
             </View>
         )
     }

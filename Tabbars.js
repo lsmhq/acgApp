@@ -1,6 +1,5 @@
 import React, { Component } from 'react'
 import { Router, Scene ,Tabs, Actions, Modal} from 'react-native-router-flux'
-import Drawer from 'react-native-drawer'
 import {Icon} from'@ant-design/react-native'
 import Body from './Body'
 import Main from './Main'
