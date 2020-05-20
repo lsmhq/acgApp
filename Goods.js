@@ -5,7 +5,7 @@ export default class Goods extends Component {
     render() {
         return (
             <View>
-                <Text> textInComponent </Text>
+                <Text> 商品详情页 </Text>
             </View>
         )
     }

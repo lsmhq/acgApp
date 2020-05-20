@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import { View, Text, FlatList,  Image,ImageBackground, TextInput, Button} from 'react-native'
+import {Actions } from 'react-native-router-flux'
 export default class All extends Component {
     constructor(){
         super()
@@ -35,7 +36,12 @@ export default class All extends Component {
                     renderItem={({item})=>{
                         console.log(this.state.data);
                         return(
-                        <View style={{width:200,height:200,marginLeft:'4%',marginTop:'4%',backgroundColor:'#D1D1D1',borderRadius:5}}>
+                        <View 
+                            style={{width:200,height:200,marginLeft:'4%',marginTop:'4%',backgroundColor:'#D1D1D1',borderRadius:5}}
+                            onTouchEnd={()=>{
+                                Actions.goods();
+                            }}
+                        >
                             <Image
                                 source={{uri:`https://daitianfang.1459.top${item.path}`}}
                                 style={{width:'95%',height:'60%',marginTop:'2%',marginLeft:'2%',alignItems:"center"}}
