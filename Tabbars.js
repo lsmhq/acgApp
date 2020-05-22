@@ -7,6 +7,7 @@ import Img from './Img';
 import List from './MsgList';
 import Login from './Login';
 import Loginin from './Loginin';
+import Goods from './Goods'
 export default class Tabbars extends Component {
 	constructor(){
 		super()
@@ -115,7 +116,15 @@ export default class Tabbars extends Component {
 						component={Loginin}
 						title='注册'
 					/>
+<<<<<<< HEAD
 					
+=======
+					<Scene
+						key='goods'
+						component={Goods}
+						title='商品详情'
+					/>
+>>>>>>> 47f611fc89be4b1e8630d776b099912ecf5c82a4
 			</Scene>
 		</Router>
         )
