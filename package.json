@@ -19,7 +19,7 @@
     "react-native-image-picker": "^2.3.1",
     "react-native-router-flux": "4.0.6",
     "react-native-splash-screen": "^3.2.0",
-    "react-native-swiper": "^1.5.14",
+    "react-native-swiper": "^1.6.0-nightly.5",
     "yarn": "^1.22.4"
   },
   "devDependencies": {

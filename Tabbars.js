@@ -1,14 +1,14 @@
-import React, { Component } from 'react'
-import { Router, Scene ,Tabs, Actions, Modal} from 'react-native-router-flux'
-import {Icon} from'@ant-design/react-native'
-import Body from './Body'
-import Main from './Main'
+import React, { Component } from 'react';
+import { Router, Scene ,Tabs, Actions} from 'react-native-router-flux';
+import {Icon} from'@ant-design/react-native';
+import Body from './Body';
+import Main from './Main';
 import Img from './Img';
 import List from './MsgList';
 import Login from './Login';
 import Loginin from './Loginin';
 import Goods from './Goods';
-import Articlemsg from './Articlemsg'
+import Articlemsg from './Articlemsg';
 export default class Tabbars extends Component {
 	constructor(){
 		super()
@@ -119,18 +119,15 @@ export default class Tabbars extends Component {
 					/>
 
 					<Scene
-						hideNavBar
 						key='goods'
 						component={Goods}
-						
+						title='商品详情'
 					/>
 					<Scene
 						hideNavBar
 						key='articlemsg'
 						component={Articlemsg}
-						
 					/>
-
 			</Scene>
 		</Router>
         )

@@ -131,7 +131,7 @@ export default class Main extends Component {
                                             backgroundColor:'white',
                                 }} onTouchEnd={()=>{
                                     Actions.articlemsg(
-                                        {param1: item.id,}
+                                        {param1: item.id}
                                     );
                                 }}>
                                     <Text style={{marginLeft:190,paddingTop:20,fontSize:22,fontWeight:'300'}}>{item.auther}</Text>

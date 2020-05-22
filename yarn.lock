@@ -5794,10 +5794,10 @@ react-native-swipeout@^2.3.6:
     prop-types "^15.5.10"
     react-tween-state "^0.1.5"
 
-react-native-swiper@^1.5.14:
-  version "1.5.14"
-  resolved "https://registry.npm.taobao.org/react-native-swiper/download/react-native-swiper-1.5.14.tgz#1c6f949ca377186300f972bb0f30d24062c899aa"
-  integrity sha1-HG+UnKN3GGMA+XK7DzDSQGLImao=
+react-native-swiper@^1.6.0-nightly.5:
+  version "1.6.0-nightly.5"
+  resolved "https://registry.npm.taobao.org/react-native-swiper/download/react-native-swiper-1.6.0-nightly.5.tgz#894319918ff22680c325b8052457ccf213a7c7cd"
+  integrity sha1-iUMZkY/yJoDDJbgFJFfM8hOnx80=
   dependencies:
     prop-types "^15.5.10"
 
