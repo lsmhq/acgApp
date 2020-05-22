@@ -7,11 +7,13 @@ export default class Main extends Component {
     constructor(){
         super()
         this.state = {
-            data:[]
+            data:[],
+            type:'all',
+            Swiper:0,
         }
     }
-    componentDidMount(){
-        fetch('https://daitianfang.1459.top/api/v1/chapter?type=all').then(data=>data.json()).then(res=>{
+    componentDidMount(e){
+        fetch('https://daitianfang.1459.top/api/v1/chapter?type='+this.state.type).then(data=>data.json()).then(res=>{
             this.setState({
                 data:res.data
             })
@@ -44,25 +46,60 @@ export default class Main extends Component {
                     marginTop:15,	
                     borderColor:'red',			                   
 				}}>
-                    <TouchableOpacity  style={styles.box2}  onPress={()=>Actions.list()}>
+                    <TouchableOpacity  style={styles.box2}  onPress={()=>{
+                        this.setState({
+                            type:'all',
+                            Swiper:0,
+                            
+                        })
+                        this.componentDidMount();
+                        
+                        
+                    }}>
                         <Text style={styles.txt}>首页</Text>
                     </TouchableOpacity>                   
-					<TouchableOpacity  style={styles.box2} onPress={()=>Actions.list()}>
+					<TouchableOpacity  style={styles.box2}  onPress={()=>{
+                        this.setState({
+                            type:'animation',
+                            Swiper:1
+
+                        })
+                        this.componentDidMount();
+                        
+                    }}>
                         <Text style={styles.txt}>动画</Text>
                     </TouchableOpacity>
-                    <TouchableOpacity  style={styles.box2} onPress={()=>Actions.list()}>
+                    <TouchableOpacity  style={styles.box2} onPress={()=>{
+                        this.setState({
+                            type:'comic',
+                            Swiper:1
+                        })
+                        this.componentDidMount()
+                    }}>
                         <Text style={styles.txt}>卡通</Text>
                     </TouchableOpacity>
-                    <TouchableOpacity  style={styles.box2} onPress={()=>Actions.list()}>
+                    <TouchableOpacity  style={styles.box2} onPress={()=>{
+                        this.setState({
+                            type:'game',
+                            Swiper:1
+                        })
+                        this.componentDidMount()
+                    }}>
                         <Text style={styles.txt}>游戏</Text>
                     </TouchableOpacity>
-                    <TouchableOpacity  style={styles.box2} onPress={()=>Actions.list()}>
+                    <TouchableOpacity  style={styles.box2} onPress={()=>{
+                        this.setState({
+                            type:'all'
+                        })
+                        this.componentDidMount()
+                    }}>
                         <Text style={styles.txt}>视频</Text>
                     </TouchableOpacity>
 				</View>
-                <View style={styles.container}>
+                <View style={this.state.Swiper==0 && styles.container}>
                         <Swiper style={styles.wrapper} 
                         autoplay={true}
+                        showsPagination={false} 
                         >
                         <View style={styles.slide}>
                             <Image resizeMode='stretch' style={styles.image} source={require('./img/lun1.jpg')} />
@@ -81,7 +118,8 @@ export default class Main extends Component {
                     </View>
                 <FlatList
                     numColumns={1}
-                    style={{width:'100%'}}
+
+                    style={this.state.Swiper==0 && styles.list}
                     data={this.state.data}
                     
                     renderItem={({item,key})=>{
@@ -116,6 +154,7 @@ export default class Main extends Component {
                   
                 >
                 </FlatList>
+                
             
             </View>
         )
@@ -157,6 +196,11 @@ const styles = StyleSheet.create({
      image:{
          width:'100%',
      },
+    list:{
+        marginBottom:400,
+        width:'100%'
+        
+    }
     
 })
 
