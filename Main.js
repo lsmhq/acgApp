@@ -1,13 +1,25 @@
 import React, { Component } from 'react'
-import { View, Text,TextInput,StyleSheet,TouchableOpacity,Image,} from 'react-native'
+import { View, Text,TextInput,StyleSheet,TouchableOpacity,Image,FlatList, Dimensions} from 'react-native'
 import { Router, Scene ,Tabs, Actions, Modal} from 'react-native-router-flux'
+import Swiper from 'react-native-swiper';
+const {width} = Dimensions.get('window').width
 export default class Main extends Component {
     constructor(){
         super()
+        this.state = {
+            data:[]
+        }
+    }
+    componentDidMount(){
+        fetch('https://daitianfang.1459.top/api/v1/chapter?type=all').then(data=>data.json()).then(res=>{
+            this.setState({
+                data:res.data
+            })
+        })
     }
     render() {
         return (
-            <View>
+            <View style={{backgroundColor:'white',}}>
                  <View style={styles.head}>
                  <TouchableOpacity  style={styles.good3} onPress={()=>Actions.list()}>
                             <Image                                        
@@ -48,7 +60,62 @@ export default class Main extends Component {
                         <Text style={styles.txt}>视频</Text>
                     </TouchableOpacity>
 				</View>
+                <View style={styles.container}>
+                        <Swiper style={styles.wrapper} 
+                        autoplay={true}
+                        >
+                        <View style={styles.slide}>
+                            <Image resizeMode='stretch' style={styles.image} source={require('./img/lun1.jpg')} />
+                        </View>
+                        <View style={styles.slide}>
+                            <Image resizeMode='stretch' style={styles.image} source={require('./img/lun2.jpg')} />
+                        </View>
+                        <View style={styles.slide}>
+                            <Image resizeMode='stretch' style={styles.image} source={require('./img/lun3.jpg')} />
+                        </View>
+                        <View style={styles.slide}>
+                            <Image resizeMode='stretch' style={styles.image} source={require('./img/lun4.jpg')} />
+                        </View>
+                
+                        </Swiper>
+                    </View>
+                <FlatList
+                    numColumns={1}
+                    style={{width:'100%'}}
+                    data={this.state.data}
+                    
+                    renderItem={({item,key})=>{
+                        
+                        return(
+                            <View>
+                                <View  style={{height:150,width:'100%',marginBottom:10,justifyContent:'center',
+                                            marginTop:10,padding:0,borderStyle: "solid",borderColor: "#cfcfcf",borderWidth: 1,
+                                            backgroundColor:'white',
+                                }} onTouchEnd={()=>{
+                                    Actions.articlemsg(
+                                        {param1: item.id,}
+                                    );
+                                }}>
+                                    <Text style={{marginLeft:190,paddingTop:20,fontSize:22,fontWeight:'300'}}>{item.auther}</Text>
+                                    <Text style={{marginLeft:190,paddingTop:15,fontSize:16,fontWeight:'200'}}>{item.title}</Text>
+                                    <Image
+                                            source={{uri:'https://daitianfang.1459.top/'+item.images}}
+                                            style={{width:130,height:100,  marginLeft:25 ,  marginTop:-85           
+                                            }}
+                                    />
+                                    
 
+                                </View>                               
+                                                                                                                                              
+                           
+                                
+                            </View>
+                        )
+                    }
+                    }
+                  
+                >
+                </FlatList>
             
             </View>
         )
@@ -78,6 +145,18 @@ const styles = StyleSheet.create({
     txt:{
         fontSize:20
     },
+    container: {
+        height: 250,
+        marginBottom:5
+      },     
+      slide: {
+        flex: 1,
+        justifyContent: 'center',
+        backgroundColor: 'transparent'
+      },
+     image:{
+         width:'100%',
+     },
     
 })
 

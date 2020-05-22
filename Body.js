@@ -34,7 +34,7 @@ export default class All extends Component {
                     style={{width:'100%'}}
                     data={this.state.data}
                     renderItem={({item})=>{
-                        console.log(this.state.data);
+                        
                         return(
                         <View 
                             style={{width:200,height:200,marginLeft:'4%',marginTop:'4%',backgroundColor:'#D1D1D1',borderRadius:5}}
