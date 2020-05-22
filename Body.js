@@ -5,7 +5,8 @@ export default class All extends Component {
     constructor(){
         super()
         this.state = {
-            data:[]
+            data:[],
+            search:''
         }
     }
     componentDidMount(){
@@ -20,13 +21,36 @@ export default class All extends Component {
             <View style={{width:'100%'}}>
                 <View style={{flexDirection:'row'}}>
                     <View style={{width:'80%'}}>
-                       <TextInput 
+                       <TextInput
                             style={{borderWidth:1,borderColor:'pink'}}
                             placeholder='请输入商品名'
+                            onChangeText = {(text)=>{
+                                this.setState({
+                                    search:text
+                                });
+                            }}
                         /> 
                     </View>
                     <View style={{width:'20%',marginTop:'2%'}}>
-                        <Button title="搜索"/>
+                        <Button 
+                            title="搜索"
+                            onPress = {()=>{
+                                console.log('搜索');
+                                let data = {type:'selete',search:this.state.search};
+                                fetch('https://daitianfang.1459.top/api/v1/goods?id=all',
+                                        {   method:'POST',
+                                            body:JSON.stringify(data),
+                                            headers:{'Content-Type':'application/json'},
+                                            mode:'cors'
+                                        }).then(
+                                            data=>data.json()
+                                ).then(data=>{
+                                    this.setState({
+                                        data:data
+                                    },()=>{console.log(this.state.data)})
+                                })
+                            }}
+                        />
                     </View>
                 </View>
                 <FlatList
@@ -34,12 +58,11 @@ export default class All extends Component {
                     style={{width:'100%'}}
                     data={this.state.data}
                     renderItem={({item})=>{
-                        
                         return(
                         <View 
                             style={{width:200,height:200,marginLeft:'4%',marginTop:'4%',backgroundColor:'#D1D1D1',borderRadius:5}}
                             onTouchEnd={()=>{
-                                Actions.goods();
+                                Actions.goods({id:item.id});
                             }}
                         >
                             <Image
