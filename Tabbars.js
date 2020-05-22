@@ -33,6 +33,7 @@ export default class Tabbars extends Component {
 							name="home"
 							/>
 						}
+						
 					>
 						<Scene key='home' component={Main} hideNavBar/>
 						<Scene 
@@ -114,6 +115,7 @@ export default class Tabbars extends Component {
 						component={Loginin}
 						title='注册'
 					/>
+					
 			</Scene>
 		</Router>
         )

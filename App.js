@@ -3,6 +3,7 @@ import React,{useState, useEffect} from 'react'
 import {BackHandler,ToastAndroid,AsyncStorage, Alert} from "react-native";
 import SplashScreen from 'react-native-splash-screen';
 import Welcome from './Welcome';
+console.disableYellowBox = true;
 let exit = false;
 const App = () => {
 	useEffect(()=>{
