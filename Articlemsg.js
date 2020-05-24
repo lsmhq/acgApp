@@ -20,11 +20,14 @@ export default class Articlemsg extends Component {
         return (
             <View>
                 <View style={styles.head}>
-                    <Text style={{fontSize:26,marginLeft:'45%'}}>
+                    <TouchableOpacity onPress={()=>Actions.pop()}>
+                        <Image source={require('./img/导航-返回.png')} style={{width:50,height:50,marginLeft:20}} />
+                    </TouchableOpacity>
+                    <Text style={{fontSize:26,marginLeft:145,color:'white'}}>
                         文章
                     </Text>
-                    <TouchableOpacity onPress={()=>Actions.list()}>
-                        <Image source={require('./img/关注.png')} style={{width:50,height:50}} />
+                    <TouchableOpacity onPress={()=>Actions.pop()}>
+                        <Image source={require('./img/关注.png')} style={{width:50,height:50,marginLeft:140}} />
                     </TouchableOpacity>         
                 </View>
                 <FlatList
@@ -122,7 +125,7 @@ const styles = StyleSheet.create({
         paddingTop:5,
         paddingBottom:5,
         flexDirection:'row',
-        justifyContent:'space-between',
+        justifyContent:'flex-start',
         alignItems:'center', 
         backgroundColor:'#FFB6C1'
     },

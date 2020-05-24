@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { View, Text,TextInput,StyleSheet,
     ToastAndroid,
-    TouchableOpacity,Image,FlatList, Dimensions,DrawerLayoutAndroid, ActionSheetIOS} from 'react-native'
+    TouchableOpacity,Image,FlatList, Dimensions,DrawerLayoutAndroid, ActionSheetIOS, ImageBackground} from 'react-native'
 import { Router, Scene ,Tabs, Actions, Modal} from 'react-native-router-flux'
 import Swiper from 'react-native-swiper';
 const {width} = Dimensions.get('window').width
@@ -23,11 +23,11 @@ export default class Main extends Component {
     }
     handleDrawerOpen=()=> { 
         //使用ToastAndroid组件弹出一个原生的Toast
-        ToastAndroid.show("打开左菜单", ToastAndroid.SHORT);
+        // ToastAndroid.show("打开左菜单", ToastAndroid.SHORT);
       } 
     
       handleDrawerClose=()=>{
-        ToastAndroid.show("关闭左菜单", ToastAndroid.SHORT);
+        // ToastAndroid.show("关闭左菜单", ToastAndroid.SHORT);
       }
     
       open=()=>{
@@ -39,22 +39,36 @@ export default class Main extends Component {
       }
    
     render() {
-        var navigationView = (  
-            <View style={{flex: 1, backgroundColor:'white'}}>  
+        var navigationView = ( 
+            <ImageBackground style={{ flex: 1,opacity:0.9 }}
+          source={require('./img/background.png')}>
+            <View style={{flex: 1,}}>  
                 <Image                                        
                                         source={require('./image/icon0.png')}
-                                        style={{width:80 ,height:80,marginLeft:110,marginTop:20}}                                     
-                                    />  
-                <Text>
-                    昵称：
-                </Text>
-                <Text>
-                    签名：
-                </Text>
-                <TouchableOpacity onPress={this.close}>
+                                        style={{width:100 ,height:100,marginLeft:100,marginTop:20}}                                     
+                                    /> 
+                <View style={{flexDirection:'column',alignItems:'center',marginTop:5}}>
+                    <Text style={styles.txtleft1}>昵称</Text>
+                    <Text style={styles.txtleft1}>签名</Text>
+                
+                    <Text style={styles.txtleft} onPress={this.close}>首页</Text>
+                    <Text style={styles.txtleft} onPress={()=>Actions.card()}>个人中心</Text>
+                    <Text style={styles.txtleft} onPress={()=>Actions.msg()}>商城</Text>
+                    <Text style={styles.txtleft}>关注</Text>
+                    <Text style={styles.txtleft}>粉丝</Text>
+                    <Text style={styles.txtleft}>关于我们</Text> 
+                    <Text style={styles.txtleft}>设置</Text> 
+                </View> 
+                
+                
+                
+                
+                
+                {/* <TouchableOpacity >
                     <Text style={[styles.textStyle, styles.textSmall]}>点击关闭侧边栏</Text>
-                </TouchableOpacity> 
+                </TouchableOpacity>  */}
             </View>  
+            </ImageBackground> 
             );  
        
         return (
@@ -69,25 +83,25 @@ export default class Main extends Component {
                  <View style={styles.head}>
                  <TouchableOpacity  onPress={this.open} >
                             <Image                                        
-                                        source={require('./image/icon0.png')}
-                                        style={{width:50 ,height:50,marginLeft:20}}                                     
+                                        source={require('./image/icon3.png')}
+                                        style={{width:50 ,height:50,marginLeft:20,borderRadius:50}}                                     
                                     />                                                   
                     </TouchableOpacity>
-                <View><TextInput placeholder='搜一搜' style={styles.search}/></View>
-                <TouchableOpacity   onPress={()=>Actions.list()}>
+                <View><Text  style={styles.search} onPress={()=>Actions.search()}>搜一搜</Text></View>
+                
 
                 <Image
                     source={require('./img/search.png')}
                     style={{width:50 ,height:50,marginRight:20}}
                 />
-                </TouchableOpacity>   
+                  
             </View>
                 
             <View style={{
 					flexDirection:'row',
 					justifyContent:"space-evenly",
                     flexWrap:'wrap',
-                    marginTop:15,	
+                    marginTop:10,	
                     borderColor:'red',			                   
 				}}>
                     <TouchableOpacity  style={styles.box2}  onPress={()=>{
@@ -163,15 +177,15 @@ export default class Main extends Component {
                 <FlatList
                     numColumns={1}
 
-                    style={this.state.Swiper==0 && styles.list}
+                    style={ styles.list}
                     data={this.state.data}
                     
                     renderItem={({item,key})=>{
                         
                         return(
                             <View>
-                                <View  style={{height:150,width:'100%',marginBottom:10,justifyContent:'center',
-                                            marginTop:10,padding:0,borderStyle: "solid",borderColor: "#cfcfcf",borderWidth: 1,
+                                <View  style={{height:150,width:'100%',marginBottom:5,justifyContent:'center',
+                                            marginTop:5,padding:0,borderStyle: "solid",borderColor: "#cfcfcf",borderWidth: 1,
                                             backgroundColor:'white',
                                 }} onTouchEnd={()=>{
                                     Actions.articlemsg(
@@ -215,16 +229,17 @@ const styles = StyleSheet.create({
         backgroundColor:'#FFB6C1'
     },
     search:{
+        textAlignVertical:'center',//竖向居中
         backgroundColor:'white',
         width:250,
-        
+        height:40,
         textAlign:'center',
         fontSize:18,
         borderRadius:20,
     },
     box2:{
         width:60,
-        height:50,       
+        height:40,       
     },
     txt:{
         fontSize:20
@@ -242,10 +257,17 @@ const styles = StyleSheet.create({
          width:'100%',
      },
     list:{
-        marginBottom:400,
-        width:'100%'
-        
-    }
+        marginBottom:60,
+        width:'100%'        
+    },
+    txtleft:{
+       fontSize:22, 
+       marginTop:45,
+    },
+    txtleft1:{
+        fontSize:24, 
+        marginTop:20,
+     }
     
 })
 
