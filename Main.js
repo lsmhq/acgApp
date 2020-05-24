@@ -1,5 +1,7 @@
 import React, { Component } from 'react'
-import { View, Text,TextInput,StyleSheet,TouchableOpacity,Image,FlatList, Dimensions} from 'react-native'
+import { View, Text,TextInput,StyleSheet,
+    ToastAndroid,
+    TouchableOpacity,Image,FlatList, Dimensions,DrawerLayoutAndroid, ActionSheetIOS} from 'react-native'
 import { Router, Scene ,Tabs, Actions, Modal} from 'react-native-router-flux'
 import Swiper from 'react-native-swiper';
 const {width} = Dimensions.get('window').width
@@ -19,18 +21,60 @@ export default class Main extends Component {
             })
         })
     }
+    handleDrawerOpen=()=> { 
+        //使用ToastAndroid组件弹出一个原生的Toast
+        ToastAndroid.show("打开左菜单", ToastAndroid.SHORT);
+      } 
+    
+      handleDrawerClose=()=>{
+        ToastAndroid.show("关闭左菜单", ToastAndroid.SHORT);
+      }
+    
+      open=()=>{
+        this.drawer.openDrawer();
+      }
+    
+      close=()=>{
+        this.drawer.closeDrawer();
+      }
+   
     render() {
+        var navigationView = (  
+            <View style={{flex: 1, backgroundColor:'white'}}>  
+                <Image                                        
+                                        source={require('./image/icon0.png')}
+                                        style={{width:80 ,height:80,marginLeft:110,marginTop:20}}                                     
+                                    />  
+                <Text>
+                    昵称：
+                </Text>
+                <Text>
+                    签名：
+                </Text>
+                <TouchableOpacity onPress={this.close}>
+                    <Text style={[styles.textStyle, styles.textSmall]}>点击关闭侧边栏</Text>
+                </TouchableOpacity> 
+            </View>  
+            );  
+       
         return (
+            <DrawerLayoutAndroid  
+            ref={(drawer) => { this.drawer = drawer; }}
+            drawerWidth={300} 
+            onDrawerClose={this.handleDrawerClose}
+            onDrawerOpen={this.handleDrawerOpen} 
+            drawerPosition={DrawerLayoutAndroid.positions.Left}  
+            renderNavigationView={() =>navigationView}>
             <View style={{backgroundColor:'white',}}>
                  <View style={styles.head}>
-                 <TouchableOpacity  style={styles.good3} onPress={()=>Actions.list()}>
+                 <TouchableOpacity  onPress={this.open} >
                             <Image                                        
                                         source={require('./image/icon0.png')}
                                         style={{width:50 ,height:50,marginLeft:20}}                                     
                                     />                                                   
                     </TouchableOpacity>
                 <View><TextInput placeholder='搜一搜' style={styles.search}/></View>
-                <TouchableOpacity  style={styles.good3} onPress={()=>Actions.list()}>
+                <TouchableOpacity   onPress={()=>Actions.list()}>
 
                 <Image
                     source={require('./img/search.png')}
@@ -157,6 +201,7 @@ export default class Main extends Component {
                 
             
             </View>
+            </DrawerLayoutAndroid>
         )
     }
 }

@@ -9,6 +9,7 @@ import Login from './Login';
 import Loginin from './Loginin';
 import Goods from './Goods';
 import Articlemsg from './Articlemsg';
+import Leftmenu from './Leftmenu';
 export default class Tabbars extends Component {
 	constructor(){
 		super()
@@ -127,6 +128,11 @@ export default class Tabbars extends Component {
 						hideNavBar
 						key='articlemsg'
 						component={Articlemsg}
+					/>
+					<Scene
+						hideNavBar
+						key='leftmenu'
+						component={Leftmenu}
 					/>
 			</Scene>
 		</Router>
