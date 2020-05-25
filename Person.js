@@ -1,30 +1,12 @@
 import React, { Component } from 'react'
-import { View,Text, Image } from 'react-native'
+import { View,Text, Image,StyleSheet ,TouchableOpacity,ImageBackground,FlatList} from 'react-native'
 import ImagePicker from 'react-native-image-picker';
 import { Actions } from 'react-native-router-flux';
 export default class Person extends Component {
     constructor() {
         super()
         this.state={
-            list:[
-                {title:'我的个人中心',
-                data:[
-                    {title:'账户管理',push:()=>{Actions.list()}},
-                    {title:'收货地址',push:()=>{Actions.list()}},
-                    {title:'我的信息',push:()=>{Actions.list()}},
-                    {title:'我的订单',push:()=>{Actions.list()}},
-                    {title:'我的二维码',push:()=>{Actions.list()}},
-                    {title:'我的积分',push:()=>{Actions.list()}},
-                    {title:'我的收藏',push:()=>{Actions.list()}}]},
-                {title:'E族活动',
-                data:[
-                    {title:'居家维修保养',push:()=>{Actions.list()}},
-                    {title:'出行接送',push:()=>{Actions.list()}},
-                    {title:'我的受赠人',push:()=>{Actions.list()}},
-                    {title:'我的住宿优惠',push:()=>{Actions.list()}},
-                    {title:'我的活动',push:()=>{Actions.list()}},
-                    {title:'我的发布',push:()=>{Actions.list()}}]}
-            ],
+            data:[],
             avatarSource: {sign:false,source:{}}
         }
     }
@@ -60,118 +42,39 @@ export default class Person extends Component {
     
     render() {
         return (
+            <ImageBackground style={{ flex: 1,opacity:0.9 }}
+          source={require('./img/background3.png')}>
             <View>
-                <View 
-                    style={{
-                        width:'100%',
-                        height:160,
-                        backgroundColor:'red'
-                    }}>
-                    <View 
-                        style={{left:'40%'}} 
-                        onTouchEnd = {this.onClickChoosePicture}
-                    >
-                        <Image 
-                            source={this.state.avatarSource.sign?this.state.avatarSource.source:require('./image/person.png')}
-                            style={{
-                                borderRadius:80,
-                                borderWidth:2,
-                                borderColor:'white',
-                                left:10,
-                                top:30,
-                                height:80,
-                                width:80
-                                }}
-                        />
-                        <Text 
-                            style={{
-                                color:'white',
-                                top:30,
-                                left:-20,
-                                fontSize:20
-                                }}
-                        >
-                            BINNU DHILLON
-                        </Text>
-                    </View>
-                </View>
-
-                <View>
-                <View 
-                    style={{
-                        width:'100%',
-                        backgroundColor:'white'
-                }}>
-                    {
-                        this.state.list.map((val,index)=>{
-                            return(
-                            <View 
-                                style={{
-                                    width:'100%',
-                                    height:260,
-                                    top:70*index
-                            }}>
-                                <Text 
-                                    style={{
-                                        left:20
-                                }}>
-                                    {val.title}
-                                </Text>
-                                <View 
-                                    style={{
-                                        flexDirection:"row",
-                                        flexWrap:"wrap",
-                                        top:10
-                                }}>
-                                {
-                                    val.data.map(val=>{
-                                        return(
-                                            <View 
-                                                style={{
-                                                    width:'33.3%',
-                                                    height:100,
-                                                    backgroundColor:'white'
-                                                }} 
-                                                onTouchEnd = {()=>{
-                                                    val.push()
-                                                }}
-                                            >
-                                                <View 
-                                                    style={{
-                                                        backgroundColor:'#f99c9c',
-                                                        width:'80%',
-                                                        height:"80%",
-                                                        left:20,
-                                                        borderRadius:5
-                                                    }}>
-                                                    <Image 
-                                                        style={{
-                                                            width:'50%',
-                                                            height:'80%',
-                                                            top:0,
-                                                            left:30,
-                                                            borderRadius:50}} 
-                                                        source={require('./image/person.png')}/>
-                                                    <Text 
-                                                        style={{
-                                                            width:'100%',
-                                                            height:'20%',
-                                                            textAlignVertical:'bottom',
-                                                            textAlign:"center"}}>
-                                                            {val.title}
-                                                    </Text>
-                                                </View>
-                                            </View>
-                                        )
-                                    })
-                                }  
-                                </View>
-                            </View>)
-                        })
-                    }
-                    </View>
-                </View>
+                <View style={styles.head}>
+                    <TouchableOpacity onPress={()=>Actions.pop()}>
+                        <Image source={require('./img/导航-返回.png')} style={{width:50,height:50,marginLeft:20}} />
+                    </TouchableOpacity>
+                    <Text style={{fontSize:26,marginLeft:125,color:'white'}}>
+                        个人中心
+                    </Text>                           
+                </View> 
+                <FlatList 
+                    style={{marginTop:20
+                        
+                    }}
+                    data={this.state.data}
+                    numColumns={1}
+                    renderItem={({item})=>(
+                        <Image  source={require('./image/icon0.png')} style={{width:100,height:100}}/>
+                    )}
+                ></FlatList> 
             </View>
+            </ImageBackground>
         )
     }
 }
+const styles = StyleSheet.create({
+    head:{
+        paddingTop:5,
+        paddingBottom:5,
+        flexDirection:'row',
+        justifyContent:'flex-start',
+        alignItems:'center', 
+        backgroundColor:'#FFB6C1'
+    },
+})
