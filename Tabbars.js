@@ -9,6 +9,8 @@ import Login from './Login';
 import Loginin from './Loginin';
 import Goods from './Goods';
 import Articlemsg from './Articlemsg';
+import Search from './Search';
+
 export default class Tabbars extends Component {
 	constructor(){
 		super()
@@ -127,6 +129,13 @@ export default class Tabbars extends Component {
 						key='articlemsg'
 						component={Articlemsg}
 					/>
+					<Scene
+						hideNavBar
+						key='search'
+						component={Search}
+						>
+					</Scene>
+					
 			</Scene>
 		</Router>
         )
