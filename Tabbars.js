@@ -10,7 +10,8 @@ import Loginin from './Loginin';
 import Goods from './Goods';
 import Articlemsg from './Articlemsg';
 import Search from './Search';
-
+import Video from './Video';
+import Player from './videoPlayer';
 export default class Tabbars extends Component {
 	constructor(){
 		super()
@@ -33,8 +34,8 @@ export default class Tabbars extends Component {
 						title='首页'
 						icon={
 							({focused})=><Icon 
-							color={focused?'red':'gray'}
-							name="home"
+							color={focused?'pink':'gray'}
+							name="bank"
 							/>
 						}
 						
@@ -46,13 +47,30 @@ export default class Tabbars extends Component {
 							component={Body}
 						/>
 					</Scene>
-								{/* 消息栏 */}
+					<Scene key='video'
+						title='视频'
+						icon={
+							({focused})=><Icon 
+							color={focused?'pink':'gray'}
+							name="android"
+							/>
+						}
+						
+					>
+						<Scene key='video' component={Video}/>
+						<Scene 
+							hideTabBar 
+							key='video' 
+							component={Video}
+						/>
+					</Scene>
+						{/* 消息栏 */}
 						<Scene key='msg'
 							title='商城'
 							icon={
 								({focused})=><Icon 
-									color={focused?'red':'gray'} 
-									name="shop"
+									color={focused?'pink':'gray'} 
+									name="audio"
 								/>
 								}
 						>
@@ -67,7 +85,7 @@ export default class Tabbars extends Component {
 							title='个人中心'
 							icon={
 								({focused})=><Icon 
-									color={focused?'red':'gray'} 
+									color={focused?'pink':'gray'} 
 									name="shop"
 								/>
 								}
@@ -80,34 +98,6 @@ export default class Tabbars extends Component {
 							/>
 						</Scene>
 					</Tabs>
-					<Scene 
-						key='list'
-						component={List}
-						title='我的发布'
-						titleStyle = {{color:'white',marginLeft:'35%'}}
-						navigationBarStyle={{backgroundColor:'#FF4040'}}
-						renderRightButton={
-							()=><Icon 
-								color='white'
-								name='fast-forward'
-								style={{
-									marginRight:20
-								}}
-							/>
-						}
-						renderLeftButton={
-							()=><Icon 
-								color='white'
-								name='area-chart'
-								onPress={()=>{
-								Actions.pop()
-								}}
-								style={{
-									marginLeft:20
-								}}
-							/>
-						}
-					/>
 					<Scene
 						key='login'
 						component={Login}
@@ -135,7 +125,12 @@ export default class Tabbars extends Component {
 						component={Search}
 						>
 					</Scene>
-					
+					<Scene
+						title='视频'
+						key='videoPlayer'
+						component={Player}
+						>
+					</Scene>
 			</Scene>
 		</Router>
         )

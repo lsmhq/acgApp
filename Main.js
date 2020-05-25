@@ -82,14 +82,12 @@ export default class Main extends Component {
             <View style={{backgroundColor:'white',}}>
                  <View style={styles.head}>
                  <TouchableOpacity  onPress={this.open} >
-                            <Image                                        
-                                        source={require('./image/icon3.png')}
-                                        style={{width:50 ,height:50,marginLeft:20,borderRadius:50}}                                     
-                                    />                                                   
-                    </TouchableOpacity>
+                    <Image                                        
+                        source={require('./image/icon3.png')}
+                        style={{width:50 ,height:50,marginLeft:20,borderRadius:50}}                                     
+                    />                                                   
+                </TouchableOpacity>
                 <View><Text  style={styles.search} onPress={()=>Actions.search()}>搜一搜</Text></View>
-                
-
                 <Image
                     source={require('./img/search.png')}
                     style={{width:50 ,height:50,marginRight:20}}
@@ -111,8 +109,6 @@ export default class Main extends Component {
                             
                         })
                         this.componentDidMount();
-                        
-                        
                     }}>
                         <Text style={styles.txt}>首页</Text>
                     </TouchableOpacity>                   
@@ -145,14 +141,6 @@ export default class Main extends Component {
                     }}>
                         <Text style={styles.txt}>游戏</Text>
                     </TouchableOpacity>
-                    <TouchableOpacity  style={styles.box2} onPress={()=>{
-                        this.setState({
-                            type:'all'
-                        })
-                        this.componentDidMount()
-                    }}>
-                        <Text style={styles.txt}>视频</Text>
-                    </TouchableOpacity>
 				</View>
                 <View style={this.state.Swiper==0 && styles.container}>
                         <Swiper style={styles.wrapper} 
@@ -176,12 +164,9 @@ export default class Main extends Component {
                     </View>
                 <FlatList
                     numColumns={1}
-
                     style={ styles.list}
                     data={this.state.data}
-                    
                     renderItem={({item,key})=>{
-                        
                         return(
                             <View>
                                 <View  style={{height:150,width:'100%',marginBottom:5,justifyContent:'center',
@@ -199,21 +184,13 @@ export default class Main extends Component {
                                             style={{width:130,height:100,  marginLeft:25 ,  marginTop:-85           
                                             }}
                                     />
-                                    
-
-                                </View>                               
-                                                                                                                                              
-                           
-                                
+                                </View>                                  
                             </View>
                         )
                     }
                     }
-                  
                 >
                 </FlatList>
-                
-            
             </View>
             </DrawerLayoutAndroid>
         )
