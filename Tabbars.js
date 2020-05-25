@@ -117,7 +117,6 @@ export default class Tabbars extends Component {
 						component={Loginin}
 						title='注册'
 					/>
-
 					<Scene
 						key='goods'
 						component={Goods}
