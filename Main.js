@@ -50,7 +50,6 @@ export default class Main extends Component {
                 <View style={{flexDirection:'column',alignItems:'center',marginTop:5}}>
                     <Text style={styles.txtleft1}>昵称</Text>
                     <Text style={styles.txtleft1}>签名</Text>
-                
                     <Text style={styles.txtleft} onPress={this.close}>首页</Text>
                     <Text style={styles.txtleft} onPress={()=>Actions.card()}>个人中心</Text>
                     <Text style={styles.txtleft} onPress={()=>Actions.msg()}>商城</Text>
@@ -59,11 +58,6 @@ export default class Main extends Component {
                     <Text style={styles.txtleft}>关于我们</Text> 
                     <Text style={styles.txtleft}>设置</Text> 
                 </View> 
-                
-                
-                
-                
-                
                 {/* <TouchableOpacity >
                     <Text style={[styles.textStyle, styles.textSmall]}>点击关闭侧边栏</Text>
                 </TouchableOpacity>  */}
@@ -82,14 +76,12 @@ export default class Main extends Component {
             <View style={{backgroundColor:'white',}}>
                  <View style={styles.head}>
                  <TouchableOpacity  onPress={this.open} >
-                            <Image                                        
-                                        source={require('./image/icon3.png')}
-                                        style={{width:50 ,height:50,marginLeft:20,borderRadius:50}}                                     
-                                    />                                                   
-                    </TouchableOpacity>
+                    <Image                                        
+                        source={require('./image/icon3.png')}
+                        style={{width:50 ,height:50,marginLeft:20,borderRadius:50}}                                     
+                    />                                                   
+                </TouchableOpacity>
                 <View><Text  style={styles.search} onPress={()=>Actions.search()}>搜一搜</Text></View>
-                
-
                 <Image
                     source={require('./img/search.png')}
                     style={{width:50 ,height:50,marginRight:20}}
@@ -101,18 +93,14 @@ export default class Main extends Component {
 					flexDirection:'row',
 					justifyContent:"space-evenly",
                     flexWrap:'wrap',
-                    marginTop:10,	
-                    borderColor:'red',			                   
+                    height:40		                   
 				}}>
                     <TouchableOpacity  style={styles.box2}  onPress={()=>{
                         this.setState({
                             type:'all',
-                            Swiper:0,
-                            
+                            Swiper:0
                         })
                         this.componentDidMount();
-                        
-                        
                     }}>
                         <Text style={styles.txt}>首页</Text>
                     </TouchableOpacity>                   
@@ -120,7 +108,6 @@ export default class Main extends Component {
                         this.setState({
                             type:'animation',
                             Swiper:1
-
                         })
                         this.componentDidMount();
                         
@@ -145,19 +132,10 @@ export default class Main extends Component {
                     }}>
                         <Text style={styles.txt}>游戏</Text>
                     </TouchableOpacity>
-                    <TouchableOpacity  style={styles.box2} onPress={()=>{
-                        this.setState({
-                            type:'all'
-                        })
-                        this.componentDidMount()
-                    }}>
-                        <Text style={styles.txt}>视频</Text>
-                    </TouchableOpacity>
 				</View>
                 <View style={this.state.Swiper==0 && styles.container}>
                         <Swiper style={styles.wrapper} 
-                        autoplay={true}
-                        showsPagination={false} 
+                            autoplay={true}
                         >
                         <View style={styles.slide}>
                             <Image resizeMode='stretch' style={styles.image} source={require('./img/lun1.jpg')} />
@@ -171,17 +149,13 @@ export default class Main extends Component {
                         <View style={styles.slide}>
                             <Image resizeMode='stretch' style={styles.image} source={require('./img/lun4.jpg')} />
                         </View>
-                
                         </Swiper>
                     </View>
                 <FlatList
                     numColumns={1}
-
                     style={ styles.list}
                     data={this.state.data}
-                    
                     renderItem={({item,key})=>{
-                        
                         return(
                             <View>
                                 <View  style={{height:150,width:'100%',marginBottom:5,justifyContent:'center',
@@ -199,21 +173,13 @@ export default class Main extends Component {
                                             style={{width:130,height:100,  marginLeft:25 ,  marginTop:-85           
                                             }}
                                     />
-                                    
-
-                                </View>                               
-                                                                                                                                              
-                           
-                                
+                                </View>                                  
                             </View>
                         )
                     }
                     }
-                  
                 >
                 </FlatList>
-                
-            
             </View>
             </DrawerLayoutAndroid>
         )
@@ -242,7 +208,8 @@ const styles = StyleSheet.create({
         height:40,       
     },
     txt:{
-        fontSize:20
+        fontSize:20,
+        marginTop:5
     },
     container: {
         height: 250,

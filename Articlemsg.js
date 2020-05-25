@@ -34,9 +34,7 @@ export default class Articlemsg extends Component {
                     numColumns={1}
                     style={{width:'100%'}}
                     data={this.state.data}
-                    
                     renderItem={({item,key})=>{
-                        
                         return(
                             <View>
                                     <Image
