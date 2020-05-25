@@ -50,7 +50,6 @@ export default class Main extends Component {
                 <View style={{flexDirection:'column',alignItems:'center',marginTop:5}}>
                     <Text style={styles.txtleft1}>昵称</Text>
                     <Text style={styles.txtleft1}>签名</Text>
-                
                     <Text style={styles.txtleft} onPress={this.close}>首页</Text>
                     <Text style={styles.txtleft} onPress={()=>Actions.card()}>个人中心</Text>
                     <Text style={styles.txtleft} onPress={()=>Actions.msg()}>商城</Text>
@@ -59,11 +58,6 @@ export default class Main extends Component {
                     <Text style={styles.txtleft}>关于我们</Text> 
                     <Text style={styles.txtleft}>设置</Text> 
                 </View> 
-                
-                
-                
-                
-                
                 {/* <TouchableOpacity >
                     <Text style={[styles.textStyle, styles.textSmall]}>点击关闭侧边栏</Text>
                 </TouchableOpacity>  */}
@@ -99,14 +93,12 @@ export default class Main extends Component {
 					flexDirection:'row',
 					justifyContent:"space-evenly",
                     flexWrap:'wrap',
-                    marginTop:10,	
-                    borderColor:'red',			                   
+                    height:40		                   
 				}}>
                     <TouchableOpacity  style={styles.box2}  onPress={()=>{
                         this.setState({
                             type:'all',
-                            Swiper:0,
-                            
+                            Swiper:0
                         })
                         this.componentDidMount();
                     }}>
@@ -116,7 +108,6 @@ export default class Main extends Component {
                         this.setState({
                             type:'animation',
                             Swiper:1
-
                         })
                         this.componentDidMount();
                         
@@ -144,8 +135,7 @@ export default class Main extends Component {
 				</View>
                 <View style={this.state.Swiper==0 && styles.container}>
                         <Swiper style={styles.wrapper} 
-                        autoplay={true}
-                        showsPagination={false} 
+                            autoplay={true}
                         >
                         <View style={styles.slide}>
                             <Image resizeMode='stretch' style={styles.image} source={require('./img/lun1.jpg')} />
@@ -159,7 +149,6 @@ export default class Main extends Component {
                         <View style={styles.slide}>
                             <Image resizeMode='stretch' style={styles.image} source={require('./img/lun4.jpg')} />
                         </View>
-                
                         </Swiper>
                     </View>
                 <FlatList
@@ -219,7 +208,8 @@ const styles = StyleSheet.create({
         height:40,       
     },
     txt:{
-        fontSize:20
+        fontSize:20,
+        marginTop:5
     },
     container: {
         height: 250,
