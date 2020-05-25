@@ -23,11 +23,11 @@ export default class Main extends Component {
     }
     handleDrawerOpen=()=> { 
         //使用ToastAndroid组件弹出一个原生的Toast
-        // ToastAndroid.show("打开左菜单", ToastAndroid.SHORT);
+        ToastAndroid.show("打开左菜单", ToastAndroid.SHORT);
       } 
     
       handleDrawerClose=()=>{
-        // ToastAndroid.show("关闭左菜单", ToastAndroid.SHORT);
+        ToastAndroid.show("关闭左菜单", ToastAndroid.SHORT);
       }
     
       open=()=>{

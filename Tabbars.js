@@ -10,6 +10,7 @@ import Loginin from './Loginin';
 import Goods from './Goods';
 import Articlemsg from './Articlemsg';
 import Search from './Search';
+import Person from './Person';
 
 export default class Tabbars extends Component {
 	constructor(){
@@ -72,6 +73,7 @@ export default class Tabbars extends Component {
 								/>
 								}
 						>
+							<Scene key="card" component={Person} hideNavBar/>
 							<Scene key="ms" component={Img}/>
 							<Scene 
 								key="msgdetail" 
