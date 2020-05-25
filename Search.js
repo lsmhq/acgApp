@@ -70,7 +70,7 @@ export default class Search extends Component {
                 <View style={{flexDirection:'row'}}>
                     <TextInput placeholder='搜索文章'  onChangeText={this._onChangeText}
                     
-                    style={styles.search} onChangeText={this._onChangeText}/>
+                    style={styles.search} />
                     <TouchableOpacity style={{width:45,height:43,backgroundColor:'#FFC125',borderStyle:'solid',
                     borderWidth:0.5,marginTop:30,marginLeft:20
                 }}  onPress={(e)=>this.fetch_select(e)}>
