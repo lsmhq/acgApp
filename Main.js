@@ -178,6 +178,11 @@ export default class Main extends Component {
                         )
                     }
                     }
+                    ListFooterComponent={()=>{
+                        return(
+                            <View style={{height:400,width:'100%'}}></View>
+                        )
+                    }}
                 >
                 </FlatList>
             </View>

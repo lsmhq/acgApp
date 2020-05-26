@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { View,Text, Image,StyleSheet ,TouchableOpacity,ImageBackground,FlatList, TextInput} from 'react-native'
+import { View,Text,ToastAndroid, Image,StyleSheet ,TouchableOpacity,ImageBackground,FlatList, TextInput, DatePickerAndroid} from 'react-native'
 import ImagePicker from 'react-native-image-picker';
 import { Actions } from 'react-native-router-flux';
 export default class Person extends Component {
@@ -80,30 +80,12 @@ export default class Person extends Component {
         }).then(data=>{
             switch (data) {
                 case 'success':{
-                    this.setState({
-                        msg:'更改成功',
-                        btn:'确认',
-                        src:'/images/success.png',
-                        fun:()=>{
-                           
-                        }
-                    },()=>{
-                        
-                    })   
+                    ToastAndroid.show("修改成功", ToastAndroid.SHORT);
                     this.componentDidMount();
                     break;
                 }
                 case 'error':{
-                    this.setState({
-                        msg:'更改失败',
-                        btn:'确认',
-                        src:'/images/failed.png',
-                        fun:()=>{
-                           
-                        }
-                    },()=>{
-                        
-                    })   
+                    ToastAndroid.show("服务器出了差错", ToastAndroid.SHORT);
                     break;
                 }
             }
@@ -144,14 +126,6 @@ export default class Person extends Component {
             <ImageBackground style={{ flex: 1,opacity:0.9 }}
           source={require('./img/background3.png')}>
             <View>
-                <View style={styles.head}>
-                    <TouchableOpacity onPress={()=>Actions.pop()}>
-                        <Image source={require('./img/导航-返回.png')} style={{width:50,height:50,marginLeft:20}} />
-                    </TouchableOpacity>
-                    <Text style={{fontSize:26,marginLeft:125,color:'white'}}>
-                        个人中心
-                    </Text>                           
-                </View> 
                 <FlatList 
                     style={{marginTop:20
                         
@@ -163,7 +137,7 @@ export default class Person extends Component {
                         <View style={{alignItems:'center',flexDirection:'column'}}>
                             <Image
                             source={{uri:"https://daitianfang.1459.top/images/avatar/"+item.avatarid}}
-                            style={{width:130,height:130, borderRadius:65      
+                            style={{width:100,height:100, borderRadius:65      
                             }}
                             />
                             <Text style={{fontWeight:'bold',fontSize:24,color:'rgb(255,64,129)',marginTop:15}}>{item.name}</Text>
@@ -228,7 +202,6 @@ export default class Person extends Component {
                                     backgroundColor:'yellow'}}>提交</Text>
                             </TouchableOpacity>
                         </View>
-                        
                     )}
                 ></FlatList> 
                

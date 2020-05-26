@@ -43,11 +43,10 @@ export default class Search extends Component {
         this._onChangeText = this._onChangeText.bind(this);
         this.state = {
             showValue:"",
+            data:[]
         }
     }
     _onChangeText(inputData){
-        // console.log("输入的内容",inputData);
-        //把获取到的内容，设置给showValue
         this.setState({showValue:inputData});
     }
     
@@ -60,47 +59,25 @@ export default class Search extends Component {
                     <TouchableOpacity onPress={()=>Actions.pop()}>
                         <Image source={require('./img/导航-返回.png')} style={{width:50,height:50,marginLeft:20}} />
                     </TouchableOpacity>
-                    <Text style={{fontSize:26,marginLeft:138,color:'white'}}>
+                    <Text style={{fontSize:26,marginLeft:'30%',color:'white'}}>
                         搜一搜
-                    </Text>
-                    
-                        <Image source={require('./img/search.png')} style={{width:50,height:50,marginLeft:130}} />
-                            
+                    </Text> 
                 </View>
                 <View style={{flexDirection:'row'}}>
                     <TextInput placeholder='搜索文章'  onChangeText={this._onChangeText}
-                    
                     style={styles.search} />
                     <TouchableOpacity style={{width:45,height:43,backgroundColor:'#FFC125',borderStyle:'solid',
-                    borderWidth:0.5,marginTop:30,marginLeft:20
+                    borderWidth:0.5,marginTop:'11%',marginLeft:20,borderRadius:5
                 }}  onPress={(e)=>this.fetch_select(e)}>
                         <Image source={require('./img/search.png')} style={{width:50,height:50,color:'black'}} />
                     </TouchableOpacity>
                 </View>
-                <FlatList 
-                    style={{marginTop:20
-                        
-                    }}
-                    data={goods}
-                    numColumns={2}
-                    renderItem={({item})=>(
-                        <View style={styles.good}>
-                            
-                            <Text
-                                style={{marginTop: 10,fontSize:20,color:'red'}}
-                            
-                            >{item.title}</Text>   
-                        </View>
-                    )}
-                ></FlatList>
+
                 <FlatList
                     numColumns={1}
-
                     style={ styles.list}
                     data={this.state.data}
-                    
                     renderItem={({item,key})=>{
-                        
                         return(
                             <View>
                                 <View  style={{height:150,width:'100%',marginBottom:5,justifyContent:'center',
@@ -128,6 +105,42 @@ export default class Search extends Component {
                         )
                     }
                     }
+                    ListFooterComponent={()=>{
+                        if(this.state.data.length>0){
+                            return(
+                                <View style={{height:300,width:'100%'}}>
+                                    <Text
+                                        style={{
+                                            fontSize:20,
+                                            width:'100%',
+                                            textAlign:'center',
+                                            marginTop:'10%'
+                                        }}
+                                    >没有更多内容啦</Text>
+                                </View>
+                            )
+                        }else{
+                            return(
+                            <View style={{height:300,width:'100%'}}>
+                                <FlatList 
+                                    style={{marginTop:20
+                                        
+                                    }}
+                                    data={goods}
+                                    numColumns={2}
+                                    renderItem={({item})=>(
+                                        <View style={styles.good}>
+                                            <Text
+                                                style={{marginTop: 10,fontSize:20,color:'red'}}
+                                            
+                                            >{item.title}</Text>   
+                                        </View>
+                                    )}
+                                ></FlatList>
+                            </View>
+                            )
+                        }
+                    }}
                   
                 >
                 </FlatList>
@@ -171,18 +184,18 @@ const styles = StyleSheet.create({
         backgroundColor:'#FFB6C1'
     },
     search:{
-        marginTop:30,
-        marginLeft:95,
+        marginTop:'10%',
+        marginLeft:'15%',
         textAlignVertical:'center',//竖向居中
         backgroundColor:'white',
-        width:300,
+        width:'60%',
         height:40,
         textAlign:'center',
         fontSize:18,
-        borderRadius:20,
+        borderRadius:6,
     },
     good:{
-        marginLeft:70,
+        marginLeft:50,
         marginTop:10,
         width:140
         

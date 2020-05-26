@@ -3,6 +3,7 @@ import {Text, View, Button, Image, Alert,AsyncStorage} from 'react-native';
 import { Actions } from 'react-native-router-flux';
 import ImagePicker from 'react-native-image-picker';
 import Login from './Login';
+import Person from './Person';
 /**
  * 从相机，或者相册中选择图片，展示出来
  */
@@ -22,55 +23,8 @@ export default class ChoosePicture extends Component {
     render() {
         if(this.state.isLogin == 'true'){
             return (
-                <View>
-                    <Button
-                        title="点击跳转List"
-                        onPress={()=>{
-                            Actions.list();
-                        }}
-                    />
-                         <View 
-                            style={{left:'35%',width:"100%",height:150}}
-                            onTouchEnd = {this.onClickChoosePicture}
-                        >
-                            <Image 
-                                source={this.state.avatarSource.sign?this.state.avatarSource.source:require('./image/person.png')}
-                                style={{
-                                    borderRadius:80,
-                                    borderWidth:2,
-                                    borderColor:'white',
-                                    left:10,
-                                    top:30,
-                                    height:80,
-                                    width:80
-                                    }}
-                            />
-                            <Text 
-                                style={{
-                                    color:'gray',
-                                    top:30,
-                                    left:-20,
-                                    fontSize:20
-                                    }}
-                            >
-                                BINNU DHILLON
-                            </Text>
-                        </View>
-                    <Button
-                        title="退出登录"
-                        color = 'red'
-                        onPress={()=>{
-                            Alert.alert('提示','确定要退出吗?',
-                                [
-                                    {text: '确定',onPress: () =>{
-                                                                    AsyncStorage.setItem('user','false',()=>{
-                                                                        this.setState({isLogin:'false'});
-                                                                    });
-                                                                }},
-                                    {text: '点错了'}
-                                ]);
-                        }}
-                    />
+                <View style={{height:'100%'}}>
+                    <Person/>
                 </View>
             );
         }else{

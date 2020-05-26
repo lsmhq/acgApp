@@ -10,7 +10,7 @@ const App = () => {
 		setTimeout(()=>{
 			SplashScreen.hide();
 		});
-	},2000)
+	},4000)
 	var [isInstall,setInstall] = useState('yes');
 	AsyncStorage.getItem('install',(err,val)=>{
 		console.log('val',val);

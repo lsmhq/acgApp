@@ -19,53 +19,27 @@ export default class All extends Component {
     render() {
         if(this.state.data.length == 0){
             return(
-                <View>
-                    <View style={{flexDirection:'row'}}>
-                    <View style={{width:'80%'}}>
-                       <TextInput
-                            style={{borderWidth:1,borderColor:'pink'}}
-                            value={this.state.search}
-                            placeholder='请输入商品名'
-                            onChangeText = {(text)=>{
-                                this.setState({
-                                    search:text
-                                });
-                            }}
-                        /> 
-                    </View>
-                    <View style={{width:'20%',marginTop:'2%'}}>
-                        <Button 
-                            title="搜索"
-                            onPress = {()=>{
-                                console.log('搜索');
-                                let data = {type:'select',search:this.state.search};
-                                fetch('https://daitianfang.1459.top/api/v1/goods?id=all',
-                                        {   method:'POST',
-                                            body:JSON.stringify(data),
-                                            headers:{'Content-Type': 'application/json'},
-                                            mode:'cors'
-                                        }).then(
-                                            data=>data.json()
-                                ).then(data=>{
-                                    this.setState({
-                                        data:data,
-                                        search:''
-                                    },()=>{console.log(this.state.data)})
-                                })
-                            }}
-                        />
-                    </View>
-                </View>
-                    <Text style={{width:'100%',fontSize:25,textAlign:'center'}}>没有找到您想要的东西</Text>
-                </View>
-            )
-        }else{
-            return (
-                <View style={{width:'100%'}}>
-                    <View style={{flexDirection:'row'}}>
+                <View style={{height:'20%',width:'100%'}}>
+                    <View 
+                        style={{
+                            flexDirection:'row',
+                            height:'42%',
+                            width:'100%',
+                            backgroundColor:'white',
+                            borderBottomColor:'gray',
+                            borderBottomWidth:2}}
+                    >
                         <View style={{width:'80%'}}>
                            <TextInput
-                                style={{borderWidth:1,borderColor:'pink'}}
+                                style={{
+                                    borderWidth:1,
+                                    borderColor:'pink',
+                                    marginTop:4,
+                                    borderRadius:5,
+                                    fontSize:20,
+                                    textAlign:'center',
+                                    marginLeft:'2%'
+                                }}
                                 value={this.state.search}
                                 placeholder='请输入商品名'
                                 onChangeText = {(text)=>{
@@ -75,10 +49,17 @@ export default class All extends Component {
                                 }}
                             /> 
                         </View>
-                        <View style={{width:'20%',marginTop:'2%'}}>
-                            <Button 
-                                title="搜索"
-                                onPress = {()=>{
+                        <View 
+                            style={{
+                                width:'15%',
+                                marginTop:'2%',
+                                marginLeft:'2%',
+                                backgroundColor:'#7A67EE',
+                                height:'68%',
+                                borderRadius:5
+                            }}
+                            onTouchEnd = {
+                                ()=>{
                                     console.log('搜索');
                                     let data = {type:'select',search:this.state.search};
                                     fetch('https://daitianfang.1459.top/api/v1/goods?id=all',
@@ -94,8 +75,98 @@ export default class All extends Component {
                                             search:''
                                         },()=>{console.log(this.state.data)})
                                     })
+                                }
+                            }
+                        >
+                            <Text
+                                style={{
+                                    width:'100%',
+                                    fontSize:20,
+                                    color:'white',
+                                    textAlign:'center',
+                                    marginTop:'8%'
                                 }}
-                            />
+                            >搜索</Text>
+                        </View>
+                    </View>
+                    <Text 
+                        style={{
+                            width:'100%',
+                            fontSize:25,
+                            textAlign:'center'
+                            }}>没有找到您想要的东西</Text>
+                </View>
+            )
+        }else{
+            return (
+                <View style={{height:'100%'}}>
+                    <View 
+                        style={{
+                            flexDirection:'row',
+                            height:'8%',
+                            backgroundColor:'white',
+                            borderBottomColor:'gray',
+                            borderBottomWidth:2}}
+                    >
+                        <View style={{width:'80%'}}>
+                           <TextInput
+                                style={{
+                                    borderWidth:1,
+                                    borderColor:'pink',
+                                    marginTop:4,
+                                    borderRadius:5,
+                                    fontSize:20,
+                                    textAlign:'center',
+                                    marginLeft:'2%'
+                                }}
+                                value={this.state.search}
+                                placeholder='请输入商品名'
+                                onChangeText = {(text)=>{
+                                    this.setState({
+                                        search:text
+                                    });
+                                }}
+                            /> 
+                        </View>
+                        <View 
+                            style={{
+                                width:'15%',
+                                marginTop:'2%',
+                                marginLeft:'2%',
+                                backgroundColor:'#7A67EE',
+                                height:'70%',
+                                borderRadius:5
+                                
+                            }}
+                            onTouchEnd = {
+                                ()=>{
+                                    console.log('搜索');
+                                    let data = {type:'select',search:this.state.search};
+                                    fetch('https://daitianfang.1459.top/api/v1/goods?id=all',
+                                            {   method:'POST',
+                                                body:JSON.stringify(data),
+                                                headers:{'Content-Type': 'application/json'},
+                                                mode:'cors'
+                                            }).then(
+                                                data=>data.json()
+                                    ).then(data=>{
+                                        this.setState({
+                                            data:data,
+                                            search:''
+                                        },()=>{console.log(this.state.data)})
+                                    })
+                                }
+                            }
+                        >
+                            <Text
+                                style={{
+                                    width:'100%',
+                                    fontSize:20,
+                                    color:'white',
+                                    textAlign:'center',
+                                    marginTop:'8%'
+                                }}
+                            >搜索</Text>
                         </View>
                     </View>
                     <FlatList
