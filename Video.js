@@ -23,7 +23,7 @@ export default class Video extends Component {
                     renderItem={({item})=>{
                         return(
                         <View 
-                            style={{width:200,height:200,marginLeft:'4%',marginTop:'4%',backgroundColor:'#D1D1D1',borderRadius:5}}
+                            style={{width:'40%',height:200,marginLeft:'7%',marginTop:'4%',backgroundColor:'#D1D1D1',borderRadius:5}}
                             onTouchEnd={()=>{
                                 Actions.videoPlayer({id:item.id});
                             }}

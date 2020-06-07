@@ -103,12 +103,12 @@ export default class All extends Component {
                     <View 
                         style={{
                             flexDirection:'row',
-                            height:'8%',
+                            height:'10%',
                             backgroundColor:'white',
                             borderBottomColor:'gray',
                             borderBottomWidth:2}}
                     >
-                        <View style={{width:'80%'}}>
+                        <View style={{width:'80%',height:'100%'}}>
                            <TextInput
                                 style={{
                                     borderWidth:1,
@@ -176,7 +176,7 @@ export default class All extends Component {
                         renderItem={({item})=>{
                             return(
                             <View 
-                                style={{width:200,height:200,marginLeft:'4%',marginTop:'4%',backgroundColor:'#D1D1D1',borderRadius:5}}
+                                style={{width:'44%',height:200,marginLeft:'4%',marginTop:'4%',backgroundColor:'#D1D1D1',borderRadius:5}}
                                 onTouchEnd={()=>{
                                     Actions.goods({id:item.id});
                                 }}
