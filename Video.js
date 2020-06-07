@@ -11,7 +11,7 @@ export default class Video extends Component {
     componentDidMount(){
         fetch('https://daitianfang.1459.top/api/v1/video?id=all').then(res=>res.json()).then(data=>{this.setState({
             data:data.data
-        },()=>console.log(data))})
+        })})
     }
     render() {
         return (

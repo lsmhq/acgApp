@@ -35,12 +35,17 @@ export default class Articletext extends Component {
                                 }}>
                                     &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{item.text}    
                                 </Text>                                                                                                                 
-                           
-                                
                             </View>
                         )
                     }
-                    }           
+                    }    
+                    ListFooterComponent = {()=>{
+                        return(
+                            <View style={{width:'100%',height:200}}>
+                                <Text></Text>
+                            </View>
+                        )
+                    }}       
                 >
                 </FlatList>
         )
