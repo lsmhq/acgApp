@@ -12,6 +12,7 @@ import Articlemsg from './Articlemsg';
 import Search from './Search';
 import Video from './Video';
 import Player from './videoPlayer';
+import Shopcar from './Shopcar';
 export default class Tabbars extends Component {
 	constructor(){
 		super()
@@ -59,6 +60,7 @@ export default class Tabbars extends Component {
 					>
 						<Scene key='video' component={Video}/>
 						<Scene 
+							hideNavBar
 							hideTabBar 
 							key='video' 
 							component={Video}
@@ -66,6 +68,7 @@ export default class Tabbars extends Component {
 					</Scene>
 						{/* 消息栏 */}
 						<Scene key='msg'
+						hideNavBar
 							title='商城'
 							icon={
 								({focused})=><Icon 
@@ -110,9 +113,10 @@ export default class Tabbars extends Component {
 						title='注册'
 					/>
 					<Scene
+					hideNavBar
 						key='goods'
 						component={Goods}
-						title='商品详情'
+						
 					/>
 					<Scene
 						hideNavBar
@@ -131,6 +135,11 @@ export default class Tabbars extends Component {
 						component={Player}
 						>
 					</Scene>
+					<Scene
+						hideNavBar
+						key='shopcar'
+						component={Shopcar}
+					/>
 			</Scene>
 		</Router>
         )

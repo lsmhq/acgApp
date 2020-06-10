@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Text, View,FlatList,Image} from 'react-native';
+import { Text, View,FlatList,Image,StyleSheet,TouchableOpacity} from 'react-native';
 import {Actions} from 'react-native-router-flux' 
 export default class Video extends Component {
     constructor(){
@@ -16,6 +16,15 @@ export default class Video extends Component {
     render() {
         return (
             <View>
+                
+                <View style={styles.head}>
+                    <TouchableOpacity onPress={()=>Actions.pop()}>
+                        <Image source={require('./img/导航-返回.png')} style={{width:50,height:50,marginLeft:20}} />
+                    </TouchableOpacity>
+                    <Text style={{fontSize:26,marginLeft:145,color:'white'}}>
+                        视频
+                    </Text>       
+                </View>
                 <FlatList
                     numColumns={2}
                     style={{width:'100%'}}
@@ -50,3 +59,13 @@ export default class Video extends Component {
         )
     }
 }
+const styles = StyleSheet.create({
+    head:{
+        paddingTop:5,
+        paddingBottom:5,
+        flexDirection:'row',
+        justifyContent:'flex-start',
+        alignItems:'center', 
+        backgroundColor:'#FFB6C1'
+    },
+})
