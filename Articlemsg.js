@@ -21,13 +21,13 @@ export default class Articlemsg extends Component {
             <View>
                 <View style={styles.head}>
                     <TouchableOpacity onPress={()=>Actions.pop()}>
-                        <Image source={require('./img/导航-返回.png')} style={{width:50,height:50,marginLeft:20}} />
+                        <Image source={require('./img/导航-返回.png')} style={{width:20,height:20,marginLeft:20}} />
                     </TouchableOpacity>
-                    <Text style={{fontSize:26,marginLeft:145,color:'white'}}>
-                        文章
+                    <Text style={{fontSize:20,marginLeft:'30%',color:'white',fontWeight:'800'}}>
+                        文 章
                     </Text>
                     <TouchableOpacity onPress={()=>Actions.pop()}>
-                        <Image source={require('./img/关注.png')} style={{width:50,height:50,marginLeft:140}} />
+                        <Image source={require('./img/关注.png')} style={{width:20,height:20,marginLeft:'55%'}} />
                     </TouchableOpacity>         
                 </View>
                 <FlatList
@@ -39,17 +39,17 @@ export default class Articlemsg extends Component {
                             <View>
                                     <Image
                                         source={{uri:'https://daitianfang.1459.top/'+item.images}}
-                                        style={{width:'100%',height:250,          
+                                        style={{width:'100%',height:150,          
                                     }}
                                     />
                                     <View style={{flexDirection:'column',}}>
-                                        <Text style={{textAlign:'center',fontSize:26,marginTop:15}}>
+                                        <Text style={{textAlign:'center',fontSize:25,marginTop:15,width:'90%',marginLeft:'5%'}}>
                                             {item.title}
                                         </Text>
-                                        <Text style={{textAlign:'center',fontSize:20,marginTop:5}}>
+                                        <Text style={{textAlign:'center',fontSize:15,marginTop:20}}>
                                             小编：{item.auther}
                                         </Text>
-                                        <Text style={{textAlign:'center',fontSize:20,marginTop:5}}>
+                                        <Text style={{textAlign:'center',fontSize:15,marginTop:5}}>
                                             小编ID：{item.autherid}
                                         </Text>
                                     </View>
@@ -120,6 +120,7 @@ export default class Articlemsg extends Component {
 }
 const styles = StyleSheet.create({
     head:{
+        height:'9%',
         paddingTop:5,
         paddingBottom:5,
         flexDirection:'row',

@@ -4,7 +4,6 @@ import {Icon} from'@ant-design/react-native';
 import Body from './Body';
 import Main from './Main';
 import Img from './Img';
-import List from './MsgList';
 import Login from './Login';
 import Loginin from './Loginin';
 import Goods from './Goods';

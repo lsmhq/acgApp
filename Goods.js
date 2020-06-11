@@ -101,52 +101,71 @@ export default class Goods extends Component {
                         style={{width:'100%',height:'100%'}}
                     />
                 </View>
-                <View style={{height:'20%'}}>
-                    <Text 
-                        style={{
-                            fontSize:25,
-                            color:'orange',
-                            marginTop:'2%',
-                            marginLeft:'5%'
-                        }}>价格:￥{this.state.data.price}</Text>
-                    <Text
-                        style={{
-                            fontSize:25,
-                            color:'black',
-                            marginTop:'2%',
-                            marginLeft:'5%'
-                        }}
-                    >商品名:{this.state.data.name}</Text>
-                    <Text
-                        style={{
-                            fontSize:25,
-                            color:'black',
-                            marginTop:'2%',
-                            marginLeft:'5%'
-                        }}
-                    >生产厂家:{this.state.data.source}</Text>
-                </View>
-                <View style={{
-                    height:'0.1%',
-                    borderColor:'gray',
-                    borderRadius:5,
-                    borderWidth:1,
-                    backgroundColor:'gray',
-                    width:'90%',
-                    marginLeft:'5%'
-                }}></View>
-                <View style={{height:'25%'}}>
-                    <Text
-                        style={{width:'100%',textAlign:'center',fontSize:20}}
-                    >详细信息</Text>
-                    <Text
-                        style={{
-                            lineHeight:25,
-                            width:'90%',
-                            marginLeft:'5%'
-                        }}
-                    >{this.state.data.description}</Text>
-                </View>
+                <FlatList
+                    numColumns={1}
+                    style={{width:'100%'}}
+                    data={[this.state.data]}
+                    renderItem={({item})=>{
+                        return(
+                            <View>
+                                <View style={{height:'50%'}}>
+                                    <Text 
+                                        style={{
+                                            fontSize:20,
+                                            color:'orange',
+                                            marginTop:'2%',
+                                            marginLeft:'5%'
+                                        }}>价格:￥{item.price}</Text>
+                                    <Text
+                                        style={{
+                                            fontSize:15,
+                                            color:'black',
+                                            marginTop:'2%',
+                                            marginLeft:'5%'
+                                        }}
+                                    >商品名:{item.name}</Text>
+                                    <Text
+                                        style={{
+                                            fontSize:15,
+                                            color:'black',
+                                            marginTop:'2%',
+                                            marginLeft:'5%'
+                                        }}
+                                    >生产厂家:{item.source}</Text>
+                                </View>
+                                <View style={{
+                                    height:'0.1%',
+                                    borderColor:'gray',
+                                    borderRadius:5,
+                                    borderWidth:1,
+                                    backgroundColor:'gray',
+                                    width:'90%',
+                                    marginLeft:'5%'
+                                }}></View>
+                                <View style={{height:'25%'}}>
+                                    <Text
+                                        style={{width:'100%',textAlign:'center',fontSize:20}}
+                                    >详细信息</Text>
+                                    <Text
+                                        style={{
+                                            lineHeight:25,
+                                            width:'90%',
+                                            marginLeft:'5%'
+                                        }}
+                                    >{item.description}</Text>
+                                </View>
+                            </View>
+                        )
+                    }}
+                    ListFooterComponent = {()=>{
+                        return(
+                            <View style={{width:'100%',height:200}}>
+                                <Text></Text>
+                            </View>
+                        )
+                    }}   
+                >
+                </FlatList>
                 <View style={{
                     height:'10%',
                     width:'100%',
