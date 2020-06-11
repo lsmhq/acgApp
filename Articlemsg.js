@@ -21,15 +21,15 @@ export default class Articlemsg extends Component {
             <View>
                 <View style={styles.head}>
                     <TouchableOpacity onPress={()=>Actions.pop()}>
-                        <Image source={require('./img/导航-返回.png')} style={{width:20,height:20,marginLeft:20}} />
+                        <Image source={require('./img/导航-返回.png')} style={{width:50,height:50,marginLeft:20}} />
                     </TouchableOpacity>
-                    <Text style={{fontSize:20,marginLeft:'30%',color:'white',fontWeight:'800'}}>
-                        文 章
+                    <Text style={{fontSize:26,marginLeft:145,color:'white'}}>
+                        文章
                     </Text>
-                    <TouchableOpacity onPress={()=>Actions.pop()}>
-                        <Image source={require('./img/关注.png')} style={{width:20,height:20,marginLeft:'55%'}} />
+                    <TouchableOpacity onPress={()=>Actions.shopcar()}>
+                        <Image source={require('./img/关注.png')} style={{width:40,height:40,marginLeft:140}} />
                     </TouchableOpacity>         
-                </View>
+                    </View>
                 <FlatList
                     numColumns={1}
                     style={{width:'100%'}}
@@ -120,11 +120,11 @@ export default class Articlemsg extends Component {
 }
 const styles = StyleSheet.create({
     head:{
-        height:'9%',
-        paddingTop:5,
-        paddingBottom:5,
+        
+        paddingTop:10,
+        paddingBottom:10,
         flexDirection:'row',
-        justifyContent:'flex-start',
+        justifyContent:'space-between',
         alignItems:'center', 
         backgroundColor:'#FFB6C1'
     },

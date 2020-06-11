@@ -79,21 +79,24 @@ export default class Search extends Component {
                     renderItem={({item,key})=>{
                         return(
                             <View>
-                                <View  style={{height:'20%',width:'100%',justifyContent:'center',padding:0,borderStyle: "solid",borderColor: "#cfcfcf",borderWidth: 1
+                                <View>
+                                <View  style={{height:150,width:'100%',marginBottom:5,justifyContent:'center',
+                                            marginTop:5,padding:0,borderStyle: "solid",borderColor: "#cfcfcf",borderWidth: 1,
                                             
                                 }} onTouchEnd={()=>{
                                     Actions.articlemsg(
                                         {param1: item.id}
                                     );
                                 }}>
-                                    <Text style={{marginLeft:'20%',fontSize:15,fontWeight:'300'}}>{item.title}</Text>
-                                    <Text style={{marginLeft:'20%',fontSize:16,fontWeight:'200'}}>{item.auther}</Text>
+                                    <Text style={{marginLeft:190,paddingTop:20,fontSize:22,fontWeight:'300'}}>{item.auther}</Text>
+                                    <Text style={{marginLeft:190,paddingTop:15,fontSize:16,fontWeight:'200'}}>{item.title}</Text>
                                     <Image
                                             source={{uri:'https://daitianfang.1459.top/'+item.images}}
-                                            style={{width:50,height:50,  marginLeft:25      
+                                            style={{width:130,height:100,  marginLeft:25 ,  marginTop:-85           
                                             }}
                                     />
-                                </View>
+                                </View>                                  
+                            </View>
                             </View>
                         )
                     }
@@ -164,8 +167,8 @@ export default class Search extends Component {
 }
 const styles = StyleSheet.create({
     head:{
-        paddingTop:5,
-        paddingBottom:5,
+        paddingTop:10,
+        paddingBottom:10,
         flexDirection:'row',
         justifyContent:'flex-start',
         alignItems:'center', 
@@ -183,7 +186,7 @@ const styles = StyleSheet.create({
         borderRadius:6,
     },
     good:{
-        marginLeft:'30%',
+        marginLeft:'35%',
         marginTop:10,
         width:140
         

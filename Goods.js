@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { Text, View, Image, ScrollView ,StyleSheet,TouchableOpacity} from 'react-native'
+import { Text, View, Image, ScrollView ,StyleSheet,TouchableOpacity,FlatList} from 'react-native'
 import { Router, Scene ,Tabs, Actions} from 'react-native-router-flux';
 
 export default class Goods extends Component {
