@@ -15,7 +15,7 @@ export default class Video extends Component {
     }
     render() {
         return (
-            <View>
+            <View style={{backgroundColor:'white',height:'100%'}}>
                 
                 <View style={styles.head}>
                     <TouchableOpacity onPress={()=>Actions.pop()}>

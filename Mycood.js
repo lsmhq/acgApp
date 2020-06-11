@@ -24,14 +24,14 @@ export default class Mycood extends Component {
                     fetch('https://daitianfang.1459.top/api/v1/goods?id='+this.state.data[i].goodsid)
                     .then((res)=>res.json())
                     .then((res)=>{
-                        console.log(res.data[0]);
+                        // console.log(res.data[0]);
                         arr.push(res.data[0]);
-                        console.log(arr);
+                        // console.log(arr);
                     }).then(()=>{
                         this.setState({
                             data2:arr
                         },()=>{
-                            console.log(this.state.data2);
+                            // console.log(this.state.data2);
                         })
                     })
                 }
@@ -65,9 +65,7 @@ export default class Mycood extends Component {
                             return(
                                 <View 
                                 style={{width:'90%',height:150,marginLeft:'5%',marginTop:'1%',backgroundColor:'aliceblue',borderRadius:5,borderWidth:1}}
-                                onTouchEnd={()=>{
-                                    Actions.goods({id:item.id});
-                                }}
+                                
                             >
                                 <TouchableOpacity style={{width:'6%',height:'15%',backgroundColor:'red'
                                                         ,marginLeft:'93.8%' ,zIndex:1   
@@ -84,7 +82,9 @@ export default class Mycood extends Component {
                                 <Text style={{marginLeft:'45%',marginTop:'5%',fontSize:16,color:'orange'}}>
                                     价格：{item.price}
                                 </Text>
-                                <Image
+                                <Image onTouchEnd={()=>{
+                                    Actions.goods({id:item.id});
+                                }}
                                     source={{uri:`https://daitianfang.1459.top${item.path}`}}
                                     style={{width:'25%',height:'70%',marginTop:'-22%',marginLeft:'6%',}}
                                 />
@@ -114,9 +114,9 @@ export default class Mycood extends Component {
             data.userid='4qG1yUvxWG';
             data.goodsid=id;
             data.timetemp=timesign;
-            console.log(data.goodsid)
-            console.log(data.userid)
-            console.log(data.timetemp)
+            // console.log(data.goodsid)
+            // console.log(data.userid)
+            // console.log(data.timetemp)
             fetch('https://daitianfang.1459.top/api/v1/shoppingcart?id=4qG1yUvxWG',{
                 method:'POST',
                 mode:'cors',

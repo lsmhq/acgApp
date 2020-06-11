@@ -81,7 +81,7 @@ export default class Goods extends Component {
         });
     }
     render() {
-        console.log(this.state);
+        // console.log(this.state);
         return (
                 
             <View style={{height:'100%'}}>

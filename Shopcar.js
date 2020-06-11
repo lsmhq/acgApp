@@ -34,7 +34,6 @@ export default class Shopcar extends Component {
     }
     render() {
         return (
-            <ScrollView>
             <View>
                <View style={styles.head}>
                     <TouchableOpacity onPress={()=>Actions.pop()}>
@@ -45,6 +44,7 @@ export default class Shopcar extends Component {
                     </Text>
                             
                 </View>
+                <ScrollView>
                 <Mycood/>
                 <View style={{width:'100%',height:25,backgroundColor:'white'}}>
                     <Text style={{textAlign:'center',fontSize:20,color:'black'}}>推荐商品</Text>
@@ -75,11 +75,12 @@ export default class Shopcar extends Component {
                         }
                         ListFooterComponent={()=>{
                             return(
-                                <View style={{height:250,width:'100%'}}></View>
+                                <View style={{height:150,width:'100%'}}></View>
                             )
                         }}
                     >
                     </FlatList>
+                    </ScrollView>
                     <View style={{width:'100%',height:100,backgroundColor:'white',
                     position:'absolute',marginTop:'160%',zIndex:1}}>
                     <Text style={{fontSize:26,color:'orange',marginTop:8,marginLeft:20}}>总件：{this.state.data2.length}</Text>
@@ -88,7 +89,7 @@ export default class Shopcar extends Component {
                 }}>结算</Text>
                 </View>
             </View>
-            </ScrollView>
+           
         )
     }
 }
