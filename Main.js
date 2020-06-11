@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { View, Text,TextInput,StyleSheet,
     ToastAndroid,
-    TouchableOpacity,Image,FlatList, Dimensions,DrawerLayoutAndroid, ActionSheetIOS, ImageBackground} from 'react-native'
+    TouchableOpacity,Image,FlatList, Dimensions,DrawerLayoutAndroid, ActionSheetIOS, ImageBackground, AsyncStorage} from 'react-native'
 import { Router, Scene ,Tabs, Actions, Modal} from 'react-native-router-flux'
 import Swiper from 'react-native-swiper';
 const {width} = Dimensions.get('window').width
@@ -12,25 +12,45 @@ export default class Main extends Component {
             data:[],
             type:'all',
             Swiper:0,
+            userid:'',
+            data2:[],
         }
     }
+    // getData = ()=>{
+    //     AsyncStorage.getItem('userid',(err,val)=>{
+    //         this.setState({
+    //          userid:  val 
+             
+    //         },()=>{
+    //             console.log(this.state.userid) 
+    //             fetch('https://daitianfang.1459.top/api/v1/person?id='+this.state.userid)
+    //             .then((res)=>res.json())
+    //             .then((res)=>{
+    //             this.setState({data2:res.data});
+    //             console.log(this.state.data2[0].id)
+    //         })
+    //         }
+    //         )
+            
+            
+    //     })
+        
+        
+    // }
+    
+
     componentDidMount(e){
         fetch('https://daitianfang.1459.top/api/v1/chapter?type='+this.state.type).then(data=>data.json()).then(res=>{
             this.setState({
                 data:res.data
             })
         })
+    //    this.getData();
+       
     }
-    handleDrawerOpen=()=> { 
-
-      } 
-    
-      handleDrawerClose=()=>{
-        
-      }
-    
       open=()=>{
         this.drawer.openDrawer();
+        
       }
     
       close=()=>{
@@ -42,13 +62,18 @@ export default class Main extends Component {
             <ImageBackground style={{ flex: 1,opacity:0.9 }}
           source={require('./img/background.png')}>
             <View style={{flex: 1,}}>  
+            {/* <Image
+                            source={{uri:"https://daitianfang.1459.top/images/avatar/"+this.state.data2.avatarid}}
+                            style={{width:100,height:100, marginLeft:100,marginTop:20    
+                            }}
+                            /> */}
                 <Image                                        
-                                        source={require('./image/icon0.png')}
+                                        source={require('./img/Logo.png')}
                                         style={{width:100 ,height:100,marginLeft:100,marginTop:20}}                                     
                                     /> 
                 <View style={{flexDirection:'column',alignItems:'center',marginTop:5}}>
-                    <Text style={styles.txtleft1}>昵称</Text>
-                    <Text style={styles.txtleft1}>签名</Text>
+                {/* <Text style={styles.txtleft1}>{this.state.data2.name}</Text>
+                    <Text style={styles.txtleft1}>{this.state.data2.signatrue}</Text> */}
                     <Text style={styles.txtleft} onPress={this.close}>首页</Text>
                     <Text style={styles.txtleft} onPress={()=>Actions.card()}>个人中心</Text>
                     <Text style={styles.txtleft} onPress={()=>Actions.msg()}>商城</Text>
@@ -57,9 +82,6 @@ export default class Main extends Component {
                     <Text style={styles.txtleft}>关于我们</Text> 
                     <Text style={styles.txtleft}>设置</Text> 
                 </View> 
-                {/* <TouchableOpacity >
-                    <Text style={[styles.textStyle, styles.textSmall]}>点击关闭侧边栏</Text>
-                </TouchableOpacity>  */}
             </View>  
             </ImageBackground> 
             );  
@@ -70,13 +92,13 @@ export default class Main extends Component {
             drawerWidth={300} 
             onDrawerClose={this.handleDrawerClose}
             onDrawerOpen={this.handleDrawerOpen} 
-            drawerPosition={DrawerLayoutAndroid.positions.Left}  
+            // drawerPosition={DrawerLayoutAndroid.positions.Left}  
             renderNavigationView={() =>navigationView}>
             <View style={{backgroundColor:'white',}}>
                  <View style={styles.head}>
                  <TouchableOpacity  onPress={this.open} >
                     <Image                                        
-                        source={require('./image/icon3.png')}
+                        source={require('./img/Logo.png')}
                         style={{width:50 ,height:50,marginLeft:20,borderRadius:50}}                                     
                     />                                                   
                 </TouchableOpacity>

@@ -89,7 +89,7 @@ export default class Goods extends Component {
                     <TouchableOpacity onPress={()=>Actions.pop()}>
                         <Image source={require('./img/导航-返回.png')} style={{width:50,height:50,marginLeft:20}} />
                     </TouchableOpacity>
-                    <Text style={{fontSize:26,marginLeft:145,color:'white'}}>
+                    <Text style={{fontSize:26,marginLeft:120,color:'white'}}>
                         商品详情
                     </Text>       
                 </View>

@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { View,Text,ToastAndroid, Image,StyleSheet ,TouchableOpacity,ImageBackground,FlatList, TextInput, DatePickerAndroid} from 'react-native'
+import { View,Text,ToastAndroid, Image,StyleSheet ,TouchableOpacity,ImageBackground,FlatList, TextInput, AsyncStorage,DatePickerAndroid} from 'react-native'
 import ImagePicker from 'react-native-image-picker';
 import { Actions } from 'react-native-router-flux';
 export default class Person extends Component {
@@ -17,7 +17,9 @@ export default class Person extends Component {
             fans:0,
             fouce:0,
             name:'',sex:'',hobby:'',hometown:'',birthday:'',signatrue:'',
-            avatarSource: {sign:false,source:{}}
+            avatarSource: {sign:false,source:{}},
+            data2:[],
+            userid:'',
         }
         
     }
@@ -39,23 +41,42 @@ export default class Person extends Component {
     _onChangeText5(inputData){
         this.setState({signatrue:inputData});
     }
-    componentDidMount(){
-        fetch('https://daitianfang.1459.top/api/v1/person?id=4qG1yUvxWG')
-        .then((res)=>res.json())
-        .then((res)=>{
-            this.setState({data:res.data});
-            
-        })
-        fetch(`https://daitianfang.1459.top/api/v1/fans?id=4qG1yUvxWG`).then(req=>req.json()).then(data=>{
-        this.setState({
-                fans:data.data.count
-            })
-        })
-        fetch(`https://daitianfang.1459.top/api/v1/fouce?id=4qG1yUvxWG`).then(req=>req.json()).then(data=>{
+    getData = ()=>{
+        AsyncStorage.getItem('userid',(err,val)=>{
             this.setState({
+             userid:  val 
+             
+            },()=>{
+                console.log(this.state.userid) 
+                fetch('https://daitianfang.1459.top/api/v1/person?id='+this.state.userid)
+                .then((res)=>res.json())
+                .then((res)=>{
+                this.setState({data2:res.data});
+                console.log(this.state.data2)
+                fetch('https://daitianfang.1459.top/api/v1/fans?id=' +this.state.userid).then(req=>req.json()).then(data=>{
+                this.setState({
+                fans:data.data.count
+                
+                })
+                console.log(this.state.count)
+                })
+                fetch('https://daitianfang.1459.top/api/v1/fouce?id='+this.state.userid).then(req=>req.json()).then(data=>{
+                this.setState({
                 fouce:data.data.count
             })
         })
+            })
+            }
+            )
+            
+            
+        })
+        
+        
+    }
+    componentDidMount(){
+        this.getData();
+        
         
     }
     fetch_person(e){
@@ -67,9 +88,7 @@ export default class Person extends Component {
         data.hometown = this.state.hometown;
         data.birthday = this.state.birthday;
         data.signatrue =this.state.signatrue;
-        data.id=this.state.data[0].id;
-        console.log(data.id);
-        console.log(data.name);console.log(data.sex);console.log(data.hobby);console.log(data.hometown);console.log(data.birthday);console.log(data.signatrue);
+        data.id=this.state.data2[0].id;
         fetch('https://daitianfang.1459.top/api/v1/person',{
             method:'POST',
             mode:'cors',
@@ -126,11 +145,20 @@ export default class Person extends Component {
             <ImageBackground style={{ flex: 1,opacity:0.9 }}
           source={require('./img/background3.png')}>
             <View>
+                <View style={styles.head}>
+                    <TouchableOpacity onPress={()=>Actions.pop()}>
+                        <Image source={require('./img/导航-返回.png')} style={{width:50,height:50,marginLeft:20}} />
+                    </TouchableOpacity>
+                    <Text style={{fontSize:26,marginLeft:120,color:'white'}}>
+                        个人中心
+                    </Text>
+                          
+                    </View>
                 <FlatList 
                     style={{marginTop:20
                         
                     }}
-                    data={this.state.data}
+                    data={this.state.data2}
                     numColumns={1}
                     renderItem={({item})=>(
                         

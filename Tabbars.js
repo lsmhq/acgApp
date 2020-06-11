@@ -85,6 +85,7 @@ export default class Tabbars extends Component {
 							/>
 						</Scene>
 						<Scene key='card'
+							hideNavBar
 							title='个人中心'
 							icon={
 								({focused})=><Icon 
@@ -101,16 +102,17 @@ export default class Tabbars extends Component {
 							/>
 						</Scene>
 					</Tabs>
-					<Scene
+					<Scene						
+						hideNavBar
 						key='login'
-						component={Login}
-						title='登录'
+						component={Login}		
 						init={true}
 					/>
 					<Scene
+						hideNavBar	
 						key='loginin'
 						component={Loginin}
-						title='注册'
+						
 					/>
 					<Scene
 					hideNavBar
