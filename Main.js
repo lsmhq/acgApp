@@ -135,6 +135,7 @@ export default class Main extends Component {
                 <View style={this.state.Swiper==0 && styles.container}>
                         <Swiper style={styles.wrapper} 
                             autoplay={true}
+                            showsPagination={false}
                         >
                         <View style={styles.slide}>
                             <Image resizeMode='stretch' style={styles.image} source={require('./img/lun1.jpg')} />

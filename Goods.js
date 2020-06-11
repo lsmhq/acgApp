@@ -1,13 +1,76 @@
 import React, { Component } from 'react'
-import { Text, View, Image, ScrollView, FlatList } from 'react-native'
+import { Text, View, Image, ScrollView ,StyleSheet,TouchableOpacity} from 'react-native'
+import { Router, Scene ,Tabs, Actions} from 'react-native-router-flux';
 
 export default class Goods extends Component {
     constructor(){
         super();
-        this.state={
-            data:{}
+        var today = new Date(),
+            date = today.getFullYear() + '-' + (today.getMonth() + 1) + '-' + today.getDate();
+        this.state = {
+            data: [],
+            timebig:date,         
+            time:new Date(), 
+            msg:'',
+            btn:'',
+            src:'',
+            fun:()=>{
+
+            }
         }
     }
+    fetch_addgood(e){
+        let data = {
+
+        };
+        var timesign=this.state.timebig+this.state.time.toLocaleTimeString();
+        data.type='insert';  
+        data.userid='4qG1yUvxWG';
+        data.goodsid=this.props.id;       
+        data.timetemp=timesign;
+        data.goodsname=this.state.data.goodsname;
+        console.log(data.goodsid)
+        console.log(data.goodsname)
+        console.log(data.timetemp)
+        console.log(data.userid)
+        fetch('https://daitianfang.1459.top/api/v1/shoppingcart?id=4qG1yUvxWG',{
+            method:'POST',
+            mode:'cors',
+            headers:{'Content-Type':'application/json'},
+            body:JSON.stringify(data)
+        }).then(req=>{
+            return req.text();
+        }).then(data=>{
+            switch (data) {
+                case 'success':{
+                    this.setState({
+                        msg:'添加成功',
+                        btn:'确认',
+                        src:'/images/success.png',
+                        fun:()=>{
+                            
+                    },
+                        
+                    })   
+                    this.componentDidMount();
+                    break;
+                }
+                case 'error':{
+                    this.setState({
+                        msg:'添加失败',
+                        btn:'确认',
+                        src:'/images/failed.png',
+                        fun:()=>{
+                            
+                        }
+                    },()=>{
+                       
+                    })   
+                    break;
+                }
+            }
+        })
+      }
     componentDidMount(){
         fetch(`https://daitianfang.1459.top/api/v1/goods?id=${this.props.id}`).then(
             (data)=>data.json()
@@ -18,10 +81,21 @@ export default class Goods extends Component {
         });
     }
     render() {
-        console.log(this.state);
+        // console.log(this.state);
         return (
+                
             <View style={{height:'100%'}}>
-                <View style={{borderColor:'gray',backgroundColor:'#D4D4D4',borderWidth:1,height:'35%'}}>
+                <View style={styles.head}>
+                    <TouchableOpacity onPress={()=>Actions.pop()}>
+                        <Image source={require('./img/导航-返回.png')} style={{width:50,height:50,marginLeft:20}} />
+                    </TouchableOpacity>
+                    <Text style={{fontSize:26,marginLeft:145,color:'white'}}>
+                        商品详情
+                    </Text>       
+                </View>
+                {/* <ScrollView 
+                > */}
+                <View style={{borderColor:'gray',backgroundColor:'#D4D4D4',borderWidth:1,height:'39%'}}>
                     <Image
                         source={{uri:`https://daitianfang.1459.top${this.state.data.path}`}}
                         style={{width:'100%',height:'100%'}}
@@ -98,7 +172,9 @@ export default class Goods extends Component {
                     position:'relative',
                     flexDirection:'row'
                 }}>
-                    <View 
+                    <TouchableOpacity     onPress={(e)=>{
+                                    this.fetch_addgood(e)
+                                }}
                         style={{
                             width:'50%',
                             backgroundColor:'orange',
@@ -106,7 +182,7 @@ export default class Goods extends Component {
                         }}>
                         <Text
                             style={{width:'100%',textAlign:'center',color:'white',fontSize:20,marginTop:'10%'}}
-                        >加入购物车</Text></View>
+                        >加入购物车</Text></TouchableOpacity>
                     <View 
                         style={{
                             width:'50%',
@@ -123,3 +199,13 @@ export default class Goods extends Component {
         )
     }
 }
+const styles = StyleSheet.create({
+    head:{
+        paddingTop:5,
+        paddingBottom:5,
+        flexDirection:'row',
+        justifyContent:'flex-start',
+        alignItems:'center', 
+        backgroundColor:'#FFB6C1'
+    },
+})

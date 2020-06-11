@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { View, Text, FlatList,  Image,ImageBackground, TextInput, Button} from 'react-native'
+import { View, Text, FlatList,  Image,ImageBackground, TextInput, Button,StyleSheet,TouchableOpacity} from 'react-native'
 import {Actions } from 'react-native-router-flux'
 export default class All extends Component {
     constructor(){
@@ -19,6 +19,18 @@ export default class All extends Component {
     render() {
         if(this.state.data.length == 0){
             return(
+                <View>
+                      <View style={styles.head}>
+                    <TouchableOpacity onPress={()=>Actions.pop()}>
+                        <Image source={require('./img/导航-返回.png')} style={{width:50,height:50,marginLeft:20}} />
+                    </TouchableOpacity>
+                    <Text style={{fontSize:26,marginLeft:145,color:'white'}}>
+                        商城
+                    </Text>
+                    <TouchableOpacity onPress={()=>Actions.shopcar()}>
+                        <Image source={require('./img/购物车.png')} style={{width:40,height:40,marginLeft:140}} />
+                    </TouchableOpacity>         
+                </View>
                 <View style={{height:'20%',width:'100%'}}>
                     <View 
                         style={{
@@ -96,9 +108,22 @@ export default class All extends Component {
                             textAlign:'center'
                             }}>没有找到您想要的东西</Text>
                 </View>
+                </View>
             )
         }else{
             return (
+                <View style={{backgroundColor:'white'}}>
+                  <View style={styles.head}>
+                    <TouchableOpacity onPress={()=>Actions.pop()}>
+                        <Image source={require('./img/导航-返回.png')} style={{width:50,height:50,marginLeft:20}} />
+                    </TouchableOpacity>
+                    <Text style={{fontSize:26,marginLeft:145,color:'white'}}>
+                        商城
+                    </Text>
+                    <TouchableOpacity onPress={()=>Actions.shopcar()}>
+                        <Image source={require('./img/购物车.png')} style={{width:40,height:40,marginLeft:140}} />
+                    </TouchableOpacity>         
+                </View>
                 <View style={{height:'100%'}}>
                     <View 
                         style={{
@@ -171,12 +196,12 @@ export default class All extends Component {
                     </View>
                     <FlatList
                         numColumns={2}
-                        style={{width:'100%'}}
+                        style={{width:'100%',backgroundColor:'white'}}
                         data={this.state.data}
                         renderItem={({item})=>{
                             return(
                             <View 
-                                style={{width:'44%',height:200,marginLeft:'4%',marginTop:'4%',backgroundColor:'#D1D1D1',borderRadius:5}}
+                                style={{width:'44%',height:200,marginLeft:'4%',marginTop:'4%',backgroundColor:'aliceblue',borderRadius:5,borderWidth:1}}
                                 onTouchEnd={()=>{
                                     Actions.goods({id:item.id});
                                 }}
@@ -185,7 +210,7 @@ export default class All extends Component {
                                     source={{uri:`https://daitianfang.1459.top${item.path}`}}
                                     style={{width:'95%',height:'60%',marginTop:'2%',marginLeft:'2%',alignItems:"center"}}
                                 />
-                                <View style={{width:'100%',height:'35%',marginTop:'3%',backgroundColor:'#DBDBDB'}}>
+                                <View style={{width:'100%',height:'35%',marginTop:'3%',}}>
                                     <Text style={{marginLeft:'15%',marginTop:'3%'}}>{item.name}</Text>
                                     <Text style={{marginLeft:'15%',marginTop:'7%',color:'#EE7600'}}>售价:{item.price}</Text>
                                 </View>
@@ -193,16 +218,29 @@ export default class All extends Component {
                             )
                         }
                         }
+                        
+                        
                         ListFooterComponent={()=>{
                             return(
-                                <View style={{height:100,width:'100%'}}></View>
+                                <View style={{height:140,width:'100%'}}></View>
                             )
                         }}
                     >
                     </FlatList>
+                </View>
                 </View>
             )
         }
        
     }
 }
+const styles = StyleSheet.create({
+    head:{
+        paddingTop:5,
+        paddingBottom:5,
+        flexDirection:'row',
+        justifyContent:'flex-start',
+        alignItems:'center', 
+        backgroundColor:'#FFB6C1'
+    },
+})
