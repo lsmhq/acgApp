@@ -57,7 +57,7 @@ export default class Search extends Component {
             <View style={{}}>
                <View style={styles.head}>
                     <TouchableOpacity onPress={()=>Actions.pop()}>
-                        <Image source={require('./img/导航-返回.png')} style={{width:50,height:50,marginLeft:20}} />
+                        <Image source={require('./img/导航-返回.png')} style={{width:25,height:25,marginLeft:20}} />
                     </TouchableOpacity>
                     <Text style={{fontSize:26,marginLeft:'30%',color:'white'}}>
                         搜一搜
@@ -75,32 +75,25 @@ export default class Search extends Component {
 
                 <FlatList
                     numColumns={1}
-                    style={ styles.list}
                     data={this.state.data}
                     renderItem={({item,key})=>{
                         return(
                             <View>
-                                <View  style={{height:150,width:'100%',marginBottom:5,justifyContent:'center',
-                                            marginTop:5,padding:0,borderStyle: "solid",borderColor: "#cfcfcf",borderWidth: 1,
+                                <View  style={{height:'20%',width:'100%',justifyContent:'center',padding:0,borderStyle: "solid",borderColor: "#cfcfcf",borderWidth: 1
                                             
                                 }} onTouchEnd={()=>{
                                     Actions.articlemsg(
                                         {param1: item.id}
                                     );
                                 }}>
-                                    <Text style={{marginLeft:190,paddingTop:20,fontSize:22,fontWeight:'300'}}>{item.auther}</Text>
-                                    <Text style={{marginLeft:190,paddingTop:15,fontSize:16,fontWeight:'200'}}>{item.title}</Text>
+                                    <Text style={{marginLeft:'20%',fontSize:15,fontWeight:'300'}}>{item.title}</Text>
+                                    <Text style={{marginLeft:'20%',fontSize:16,fontWeight:'200'}}>{item.auther}</Text>
                                     <Image
                                             source={{uri:'https://daitianfang.1459.top/'+item.images}}
-                                            style={{width:130,height:100,  marginLeft:25 ,  marginTop:-85           
+                                            style={{width:50,height:50,  marginLeft:25      
                                             }}
                                     />
-                                    
-
-                                </View>                               
-                                                                                                                                              
-                           
-                                
+                                </View>
                             </View>
                         )
                     }
@@ -127,7 +120,7 @@ export default class Search extends Component {
                                         
                                     }}
                                     data={goods}
-                                    numColumns={2}
+                                    numColumns={1}
                                     renderItem={({item})=>(
                                         <View style={styles.good}>
                                             <Text
@@ -141,18 +134,13 @@ export default class Search extends Component {
                             )
                         }
                     }}
-                  
                 >
                 </FlatList>
-
-                
             </View>
             </ImageBackground>
         )
     }
-    
     fetch_select = (e)=>{
-       
         let data = {
             search:''
         };
@@ -195,7 +183,7 @@ const styles = StyleSheet.create({
         borderRadius:6,
     },
     good:{
-        marginLeft:50,
+        marginLeft:'30%',
         marginTop:10,
         width:140
         

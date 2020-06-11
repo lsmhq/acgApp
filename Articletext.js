@@ -30,8 +30,8 @@ export default class Articletext extends Component {
                         
                         return(
                             <View>
-                                <Text style={{fontSize:18,marginTop:10,margin:20,
-                                            lineHeight:40
+                                <Text style={{fontSize:17,marginTop:10,margin:20,
+                                            lineHeight:30
                                 }}>
                                     &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{item.text}    
                                 </Text>                                                                                                                 
